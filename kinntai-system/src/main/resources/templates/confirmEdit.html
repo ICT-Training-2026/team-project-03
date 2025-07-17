@@ -1,64 +1,26 @@
+<!-- src/main/resources/templates/confirmEdit.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>レビュー編集確認</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+  <meta charset="UTF-8">
+  <title>勤怠変更確認</title>
+  <link rel="stylesheet" href="/css/confirmEdit.css">
+  <script src="/js/confirmEdit.js" defer></script>
 </head>
 <body>
-		
-	<h2>レビュー編集確認</h2>
-
-	<table class="confirm-table" th:object="${reviewEditForm}">
-		<tr>
-			<td class="guide">【ID】</td>
-			<td  th:text="*{reviewId}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【店舗】</td>
-			<td th:text="*{restaurantId} + '　' + *{restaurantName}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【利用者ID】</td>
-			<td th:text="*{userId}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【来店日】</td>
-			<td th:text="*{visitDate}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【評価】(1-5)</td>
-			<td th:text="*{rating}"></td>
-		</tr>
-		<tr>
-			<td class="guide">【一言コメント】</td>
-			<td th:text="*{comment}"></td>
-		</tr>
-	</table>
-	<br>
-	
-    <form th:action="@{/confirm-edit-review}" method="POST"
-			th:object="${reviewEditForm}">
-    	<input type="hidden" th:field="*{reviewId}">
-    	<input type="hidden" th:field="*{restaurantId}">
-    	<input type="hidden" th:field="*{userId}">
-    	<input type="hidden" th:field="*{visitDate}">
-    	<input type="hidden" th:field="*{rating}">
-    	<input type="hidden" th:field="*{comment}">
-    	<input type="submit" value="更新実行" class="btn">
-   	</form>
-
-    <form th:action="@{/show-edit-form}" method="POST"
-			th:object="${reviewEditForm}">
-    	<input type="hidden" th:field="*{reviewId}">
-    	<input type="hidden" th:field="*{restaurantId}">
-    	<input type="hidden" th:field="*{restaurantName}">
-    	<input type="hidden" th:field="*{userId}">
-    	<input type="hidden" th:field="*{visitDate}">
-    	<input type="hidden" th:field="*{rating}">
-    	<input type="hidden" th:field="*{comment}" class="btn">
-    	<input type="submit" value="もどる" class="btn">
-   	</form>
-
+  <h1>勤怠変更内容の確認</h1>
+  <p>以下の内容で更新しますか？</p>
+  <form action="/complete-edit" method="post">
+    <p>日付: <span th:text="${date}"></span></p>
+    <p>出勤時刻: <span th:text="${startTime}"></span></p>
+    <p>退勤時刻: <span th:text="${endTime}"></span></p>
+    <p>勤怠区分: <span th:text="${status}"></span></p>
+    <input type="hidden" name="date" th:value="${date}">
+    <input type="hidden" name="startTime" th:value="${startTime}">
+    <input type="hidden" name="endTime" th:value="${endTime}">
+    <input type="hidden" name="status" th:value="${status}">
+    <button type="submit">変更する</button>
+  </form>
+  <button onclick="history.back()">戻る</button>
 </body>
 </html>

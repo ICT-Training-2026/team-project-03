@@ -1,67 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>レビュー一覧</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+  <meta charset="UTF-8">
+  <title>新規ユーザー登録</title>
+  <link rel="stylesheet" href="/css/sinki.css">
 </head>
 <body>
-
-<h2>レビュー一覧</h2>
-
-<div th:object="${reviewSearchForm}">
-【店舗】<br>
-<p th:text="*{restaurantId}
-               + '　' + *{restaurantName}"></p>
-</div>
-
-<br>
-<div th:if="${reviewList} == null">
-（レビューが存在しません）
-</div>
-<div th:if="${reviewList} != null">
-	<table class="review-list">
-		<tr>
-			<th colspan="2">レビュー</th><th>ID</th><th>ユーザ</th><th>来店日</th><th>評価</th><th>一言コメント</th>
-		</tr>
-
-		<tr th:each="review : ${reviewList}">
-			<td>
-				<form th:action="@{/show-edit-form}" method="POST">
-					<input type="hidden" name="reviewId"       th:value="${review.reviewId}">
-					<input type="hidden" name="restaurantId"   th:value="${reviewSearchForm.restaurantId}">
-					<input type="hidden" name="restaurantName" th:value="${reviewSearchForm.restaurantName}">
-					<input type="hidden" name="userId"         th:value="${review.userId}">
-					<input type="hidden" name="visitDate"      th:value="${review.visitDate}">
-					<input type="hidden" name="rating"         th:value="${review.rating}">
-					<input type="hidden" name="comment"        th:value="${review.comment}">
-					<input type="submit" value="編集" class="tbtn">
-				</form>
-			</td>
-			<td>
-				<form th:action="@{/remove-review}" method="POST">
-					<input type="hidden" name="reviewId"       th:value="${review.reviewId}">
-					<input type="hidden" name="restaurantId"   th:value="${reviewSearchForm.restaurantId}">
-					<input type="hidden" name="restaurantName" th:value="${reviewSearchForm.restaurantName}">
-					<input type="hidden" name="userId"         th:value="${review.userId}">
-					<input type="hidden" name="visitDate"      th:value="${review.visitDate}">
-					<input type="hidden" name="rating"         th:value="${review.rating}">
-					<input type="hidden" name="comment"        th:value="${review.comment}">
-					<input type="submit" value="削除" class="tbtn">
-				</form>
-			</td>
-			<td th:text="${review.reviewId}"></td>
-			<td th:text="${review.userId}"></td>
-			<td th:text="${review.visitDate}"></td>
-			<td th:text="${review.rating}"></td>
-			<td th:text="${review.comment}"></td>
-		</tr>
-
-	</table>
-</div>
-
-<br>
-<a th:href="@{/top}">トップページに戻る</a>
-
+  <h1>新規ユーザー登録</h1>
+  <form method="post" action="/sinki/confirm">
+    <label>ID: <input type="text" name="id"></label><br>
+    <label>氏名: <input type="text" name="name"></label><br>
+    <label>パスワード: <input type="password" name="password"></label><br>
+    <label>メール: <input type="email" name="email"></label><br>
+    <label>部署: <input type="text" name="departmentId"></label><br>
+    <label>入社年月日: <input type="date" name="nyushaDate"></label><br>
+    <button type="submit">確認</button>
+    <a href="/main.html">TOPに戻る</a>
+  </form>
 </body>
 </html>

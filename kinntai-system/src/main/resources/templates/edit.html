@@ -1,53 +1,27 @@
+<!-- src/main/resources/templates/edit.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html>
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>レストラン一覧</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+  <meta charset="UTF-8">
+  <title>勤怠編集</title>
+  <link rel="stylesheet" href="/css/edit.css">
+  <script src="/js/edit.js" defer></script>
 </head>
 <body>
-
-<h2>レストラン検索</h2>
-<form th:action="@{/restaurant-search}" method="POST" th:object="${restaurantSearchForm}">
-	【店舗名】（部分一致）<br>
-   	<input type="text" th:field="*{restaurantName}"><br>
-	<br>
-   	<input type="submit" value="検索" class="btn">
-</form>
-
-<div th:if="${restaurantList} != null">
-	<h2>レストラン一覧</h2>
-
-	<table class="restaurant-list">
-		<tr>
-			<th colspan="2">レビュー</th><th>店舗ID</th><th>店舗名</th><th>キャッチフレーズ</th><th>平均評価</th>
-		</tr>
-
-		<tr th:each="restaurant : ${restaurantList}">
-			<td>
-				<form th:action="@{/search-review}" method="POST">
-					<input type="hidden" name="restaurantId" th:value="${restaurant.restaurantId}">
-					<input type="hidden" name="restaurantName" th:value="${restaurant.restaurantName}">
-					<input type="submit" value="一覧" class="tbtn">
-				</form>
-			</td>
-			<td>
-				<form th:action="@{/show-review-form}" method="POST">
-					<input type="hidden" name="restaurantId" th:value="${restaurant.restaurantId}">
-					<input type="hidden" name="restaurantName" th:value="${restaurant.restaurantName}">
-					<input type="submit" value="登録" class="tbtn">
-				</form>
-			</td>
-			<td th:text="${restaurant.restaurantId}"></td>
-			<td th:text="${restaurant.restaurantName}"></td>
-			<td th:text="${restaurant.catchPhrase}"></td>
-			<td th:text="${restaurant.formatAverageRating()}"></td>
-		</tr>
-
-	</table>
-
-</div>
-
+  <h1>勤怠編集</h1>
+  <form action="/confirm-edit" method="post">
+    <label>日付: <input type="date" name="date" required></label><br>
+    <label>出勤時刻: <input type="time" name="startTime" required></label><br>
+    <label>退勤時刻: <input type="time" name="endTime" required></label><br>
+    <label>勤怠区分:
+      <select name="status" required>
+        <option value="出勤">出勤</option>
+        <option value="欠勤">欠勤</option>
+        <option value="有休">有休</option>
+      </select>
+    </label><br>
+    <button type="submit">確認画面へ</button>
+  </form>
+  <button onclick="location.href='/main'">TOPに戻る</button>
 </body>
 </html>
