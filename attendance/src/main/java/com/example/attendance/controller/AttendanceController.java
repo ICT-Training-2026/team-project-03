@@ -16,7 +16,7 @@ public class AttendanceController {
 
     // 出勤打刻
     @PostMapping("/clock-in")
-    public String clockIn(@RequestParam Long userId) {//haitoテスト
+    public String clockIn(@RequestParam Long userId) {
         return attendanceService.clockIn(userId);
     }
 
