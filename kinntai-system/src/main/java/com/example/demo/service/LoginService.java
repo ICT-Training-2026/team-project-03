@@ -1,11 +1,19 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Attendance;
+import org.springframework.stereotype.Service;
 
-public interface LoginService {
+import com.example.demo.repository.UserRepository;
 
-	void edit(Attendance review);
-	
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class LoginService {
+    private final UserRepository userRepository;
+
+    public boolean authenticate(String userId, String rawPassword) {
+        return userRepository.findById(userId)
+                .map(user -> user.getPassword().equals(rawPassword)) // 実際はハッシュ比較
+                .orElse(false);
+    }
 }
-
-//aaaaaaaa

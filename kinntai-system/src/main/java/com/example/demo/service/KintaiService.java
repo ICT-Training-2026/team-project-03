@@ -2,22 +2,18 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Attendance;
-import com.example.demo.repository.ReviewRepository;
+import com.example.demo.entity.Kintai;
+import com.example.demo.repository.KintaiRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class KintaiService implements LoginService {
+public class KintaiService {
 
-	private final ReviewRepository repository;
-	
-	@Override
-	public void edit(Attendance review) {
-		
-		repository.update(review);
-		
-	}
+    private final KintaiRepository repository;
 
+    public void regist(Kintai kintai) {
+        repository.save(kintai);
+    }
 }

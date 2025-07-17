@@ -1,8 +1,22 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Attendance;
+import java.util.List;
 
-public interface DepartmentService {
+import org.springframework.stereotype.Service;
 
-	void regist(Attendance review);
+import com.example.demo.entity.Kintai;
+import com.example.demo.repository.KintaiRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class DepartmentService {
+    private final KintaiRepository kintaiRepository;
+
+    public List<Kintai> getKintaiByDepartment(String departmentId) {
+        return kintaiRepository.findByDepartmentId(departmentId);
+    }
+
+    // CSV出力用メソッドも追加可能
 }

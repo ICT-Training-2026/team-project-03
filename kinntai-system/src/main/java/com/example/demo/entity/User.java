@@ -1,30 +1,17 @@
 package com.example.demo.entity;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name="users")
 public class User {
-
-	private int restaurantId;
-	private String restaurantName;
-	private String catchPhrase;
-	private double averageRating;	// 平均評価 (1.0 - 5.0)
-									// 0.0 は レビューなし
-	// 平均評価表示
-	public String formatAverageRating() {
-		String result;
-		
-		if (averageRating == 0.0) {
-			result = "-";
-		} else {
-			result = String.format("%.1f", averageRating);
-		}
-
-		return result;
-	}
-	
+    @Id
+    private String userId;
+    private String password;
+    private String name;
+    private int departmentId;
+    private String role; // "ADMIN" or "USER"
 }
