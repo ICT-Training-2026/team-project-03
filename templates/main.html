@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>勤怠管理メイン画面</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div class="container">
+
+    <div class="top-box">
+      <div id="date">2025/07/05</div>
+      <div id="time">9:00</div>
+    </div>
+
+    <div class="side-menu">
+      <a href="edit.html">勤怠編集</a>
+      <a href="department.html">部署検索</a>
+      <a href="shinki.html">新規登録</a>
+    </div>
+
+    <div class="content">
+
+      <div class="row">
+        <label for="status">勤怠区分</label>
+        <select id="status">
+          <option value="1">出勤</option>
+          <option value="2">欠勤</option>
+          <option value="3">振出</option>
+          <option value="4">振休</option>
+          <option value="5">年休</option>
+          <option value="6">休日</option>
+        </select>
+      </div>
+
+      <div class="row time-inputs">
+        <button>出勤</button>
+        <input type="number" placeholder="出勤時間" />
+        <button>退勤</button>
+        <input type="number" placeholder="退勤時間" />
+      </div>
+
+      <button class="register">登録</button>
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
+
+
