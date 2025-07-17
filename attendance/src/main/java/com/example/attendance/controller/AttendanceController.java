@@ -12,7 +12,7 @@ import com.example.attendance.service.AttendanceService;
 @RequestMapping("/api/attendance")
 public class AttendanceController {
     @Autowired
-    private AttendanceService attendanceService; //テストだよ
+    private AttendanceService attendanceService; 
 
     // 出勤打刻
     @PostMapping("/clock-in")
