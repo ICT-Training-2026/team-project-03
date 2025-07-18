@@ -15,7 +15,7 @@ public class DepartmentService {
     private final KintaiRepository kintaiRepository;
 
     public List<Kintai> getKintaiByDepartment(String departmentId) {
-        return kintaiRepository.findByDepartmentId(departmentId);
+        return kintaiRepository.findByDepartId(departmentId);
     }
 
     // CSV出力用メソッドも追加可能
