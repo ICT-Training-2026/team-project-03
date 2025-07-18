@@ -19,6 +19,10 @@ public class User {
 
     @Column(name = "USER_NAME", length = 50, nullable = false)
     private String name;
+<<<<<<< HEAD
+    private int departmentId;
+    private String role; // "ADMIN" or "USER"
+=======
 
     @Column(name = "USER_YEAR", length = 4)
     private Integer userYear;
@@ -37,4 +41,5 @@ public class User {
 
     @Column(name = "PASS", length = 50, nullable = false)
     private String pass;
+>>>>>>> refs/remotes/origin/master
 }

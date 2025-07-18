@@ -17,6 +17,11 @@ public class Kintai {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+<<<<<<< HEAD
+    private Long userId;
+    private String kintaiKubun; // 出勤 or 退勤
+    private LocalDateTime time;
+=======
 
     @Column(name = "DATE")
     private String date;
@@ -50,4 +55,5 @@ public class Kintai {
 
     @Column(name = "DAY", length = 20)
     private String day;
+>>>>>>> refs/remotes/origin/master
 }
