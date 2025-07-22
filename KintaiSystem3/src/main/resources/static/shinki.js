@@ -12,6 +12,7 @@ document.getElementById("addRow").addEventListener("click", () => {
     <td><input type="email" name="mail${currentRow}"></td>
     <td><input name="dept${currentRow}"></td>
     <td><input type="date" name="date${currentRow}"></td>
+	<td><input name="admin${currentRow}"></td>
   `;
   tbody.appendChild(tr);
 });
