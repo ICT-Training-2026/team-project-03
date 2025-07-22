@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>トップメニュー</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <h1>トップメニュー</h1>
+    <div>
+        <button onclick="location.href='/edit'">勤怠一覧・編集</button>
+        <button onclick="location.href='/department'">部署勤怠一覧</button>
+        <button onclick="location.href='/sinki'">ユーザ新規登録</button>
+    </div>
+    <hr>
+    <h2>打刻</h2>
+    <form action="/confirmKintai" method="post">
+        <input type="hidden" name="status" id="statusInput">
+        <button type="button" onclick="setStatusAndSubmit('出勤')">出勤</button>
+        <button type="button" onclick="setStatusAndSubmit('退勤')">退勤</button>
+    </form>
+</body>
+</html>

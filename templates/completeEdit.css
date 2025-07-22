@@ -1,0 +1,39 @@
+body {
+  font-family: 'Yu Gothic', sans-serif;
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.message-box {
+  border: 2px solid #000;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 40px 60px;
+  margin-bottom: 50px;
+}
+
+.message {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.button-area {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #b3d9ff;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #000;
+}
