@@ -13,6 +13,7 @@ while (params.get(`id${rowIndex}`)) {
     <td>${params.get(`mail${rowIndex}`) || ""}</td>
     <td>${params.get(`dept${rowIndex}`) || ""}</td>
     <td>${params.get(`date${rowIndex}`) || ""}</td>
+	<td>${params.get(`admin${rowIndex}`) || ""}</td>
   `;
   tableBody.appendChild(tr);
   rowIndex++;
