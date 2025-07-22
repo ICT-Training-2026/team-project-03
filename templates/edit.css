@@ -1,0 +1,75 @@
+body {
+  font-family: 'Yu Gothic', sans-serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+}
+
+.left-calendar {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 280px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.right-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  flex-grow: 1;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.right-form h2 {
+  margin-top: 0;
+}
+
+.right-form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+}
+
+input, select {
+  padding: 8px;
+  width: 200px;
+  font-size: 1rem;
+}
+
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #c8e6c9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #a5d6a7;
+}

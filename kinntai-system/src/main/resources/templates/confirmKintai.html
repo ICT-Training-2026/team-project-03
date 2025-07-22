@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>勤怠確認</title>
+</head>
+<body>
+<h1>勤怠登録確認</h1>
+<p>区分: <span th:text="${kintai.kintaiKubun}"></span></p>
+<p>時刻: <span th:text="${kintai.time}"></span></p>
+<form action="/completeKintai" method="post">
+    <input type="hidden" name="userId" th:value="${kintai.userId}">
+    <input type="hidden" name="kintaiKubun" th:value="${kintai.kintaiKubun}">
+    <input type="hidden" name="time" th:value="${kintai.time}">
+    <button type="submit">登録</button>
+</form>
+<form action="/kintai" method="get">
+    <button type="submit">戻る</button>
+</form>
+</body>
+</html>

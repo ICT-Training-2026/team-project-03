@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログイン</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>ログイン</h1>
+    <form id="login-form">
+      <label for="login-id">ログインID</label>
+      <input type="text" id="login-id" name="login-id" required>
+
+      <label for="password">パスワード</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">ログイン</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const id = document.getElementById("login-id").value.trim();
+      const pw = document.getElementById("password").value.trim();
+
+      if (!id || !pw) {
+        alert("IDとパスワードを入力してください。");
+        return;
+      }
+
+      try {
+        const params = new URLSearchParams();
+        params.append("userId", id);
+        params.append("pass", pw);
+
+        const response = await fetch("/api/user/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: params.toString()
+        });
+
+        if (!response.ok) {
+          throw new Error("サーバーエラー");
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+          // ログイン成功
+          window.location.href = "main.html";
+        } else {
+          // ログイン失敗
+          alert(result.message); // ← ここで「IDまたはパスワードが違います」が表示される
+        }
+      } catch (err) {
+        alert("IDまたはパスワードが違います。");
+      }
+    });
+  </script>
+</body>
+</html>
