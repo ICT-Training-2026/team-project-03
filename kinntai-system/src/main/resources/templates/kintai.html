@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/kintai.css">
+<title>勤怠打刻</title>
+</head>
+<body>
+<h1>勤怠登録</h1>
+<form action="/confirmKintai" method="post" th:object="${kintai}">
+    <label>勤怠区分:
+        <select name="kintaiKubun">
+            <option value="出勤">出勤</option>
+            <option value="退勤">退勤</option>
+        </select>
+    </label>
+    <input type="hidden" name="userId" value="1">
+    <input type="hidden" name="time" th:value="${#temporals.format(T(java.time.LocalDateTime).now(),'yyyy-MM-dd HH:mm:ss')}" />
+    <button type="submit">確認</button>
+</form>
+</body>
+</html>
