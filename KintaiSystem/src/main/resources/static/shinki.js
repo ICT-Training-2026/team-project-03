@@ -8,6 +8,7 @@ document.getElementById("addRow").addEventListener("click", () => {
     <td>${currentRow}</td>
     <td><input name="id${currentRow}"></td>
     <td><input name="name${currentRow}"></td>
+	<td><input name="name${currentRow}"></td>
     <td><input type="password" name="pass${currentRow}"></td>
     <td><input type="email" name="mail${currentRow}"></td>
     <td><input name="dept${currentRow}"></td>
