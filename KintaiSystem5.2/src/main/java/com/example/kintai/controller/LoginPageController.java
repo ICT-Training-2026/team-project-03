@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginPageController {
 
     // 「/login」にアクセスしたときに login.html を返す
-    @GetMapping("/login")
+    @GetMapping("/login")  // 「/login」エンドポイントへのGETリクエストを処理
     public String showLoginPage() {
         // templates フォルダ内の login.html を返す
-        return "login";
+        return "login";  // login.html テンプレートを返す
     }
 }

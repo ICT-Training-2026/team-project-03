@@ -12,9 +12,14 @@ import com.example.kintai.repository.DepartmentRepository;
 public class DepartmentService {
 
     @Autowired
-    private DepartmentRepository departmentRepository;
+    private DepartmentRepository departmentRepository;  // DepartmentRepositoryのインスタンスを自動的に注入
 
+    /** 
+     * 全ての部署を取得するメソッド
+     * 
+     * @return 部署のリスト
+     */
     public List<Department> getAllDepartments() {
-        return departmentRepository.findAll();
+        return departmentRepository.findAll();  // リポジトリを使用して全ての部署を取得
     }
 }

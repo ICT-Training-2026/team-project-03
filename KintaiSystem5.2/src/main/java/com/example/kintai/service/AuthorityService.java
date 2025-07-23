@@ -12,9 +12,14 @@ import com.example.kintai.repository.AuthorityRepository;
 public class AuthorityService {
 
     @Autowired
-    private AuthorityRepository authorityRepository;
+    private AuthorityRepository authorityRepository;  // AuthorityRepositoryのインスタンスを自動的に注入
 
+    /** 
+     * 全ての権限を取得するメソッド
+     * 
+     * @return 権限のリスト
+     */
     public List<Authority> getAllAuthorities() {
-        return authorityRepository.findAll();
+        return authorityRepository.findAll();  // リポジトリを使用して全ての権限を取得
     }
 }
