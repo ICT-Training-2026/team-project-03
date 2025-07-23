@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <div class="header">
-	<div class="header-title">HAITO</div>
-  </div>
   <div class="login-container">
     <h1>ログイン</h1>
     <form id="login-form">
@@ -50,24 +47,23 @@
           throw new Error("サーバーエラー");
         }
 
+        // レスポンスボディを安全に読み込む
         const text = await response.text();
         if (!text) {
+          // 空ボディの場合（ログイン失敗）
           alert("ユーザーIDまたはパスワードが正しくありません。");
           return;
         }
 
+        // JSONとしてパース
         const user = JSON.parse(text);
-        console.log("レスポンス:", user);
+        console.log("レスポンス:", user); // デバッグ用
 
         if (user && user.userId) {
-          // ✅ ログイン成功 → sessionStorage に保存
-          sessionStorage.setItem("loginUserId", user.userId);
-          sessionStorage.setItem("loginUserName", user.userName);
-
-          // main.html に遷移
+          // ログイン成功
           window.location.href = "main.html";
         } else {
-          // ❌ ログイン失敗
+          // ログイン失敗
           alert("ユーザーIDまたはパスワードが正しくありません。");
         }
       } catch (err) {

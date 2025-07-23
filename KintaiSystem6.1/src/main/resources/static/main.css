@@ -4,24 +4,30 @@ body {
   padding: 0;
 }
 header {
-  background-color: #f7d8ea;
+  background-color: #F7D8EA;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
 }
 .logo {
-  font-weight: bold;
-  font-style: italic;
-  color: white;
-  background-color: #b34791;
-  padding: 5px 10px;
-  border-radius: 5px;
+	width: 150px;
+	 height: 100%;
+	 background-color: #C9439C;
+	 color: white;
+	 font-weight: bold;
+	 font-style: italic;
+	 font-size: 1.5rem;
+	 display: block;
+	 align-items: center;
+	 justify-content: center;
+	 text-align: center;
+	 padding-top: 26px;
+	 padding-bottom: 26px;	
 }
 header nav a {
   text-decoration: none;
   color: #333;
+  margin-right: 20px;
 }
 .container {
   display: flex;
@@ -43,6 +49,7 @@ header nav a {
 }
 h2 {
   text-align: center;
+  margin: 0%;
 }
 .form-box {
   border: 1px solid #ccc;
@@ -55,12 +62,13 @@ h2 {
 .form-box div {
   margin-bottom: 15px;
 }
+
 .note {
   font-size: 12px;
   color: #555;
 }
 .submit-btn {
-  background-color: #cce0cc;
+  background-color: #CCE0CC;
   border: none;
   padding: 12px 30px;
   font-size: 16px;
@@ -77,4 +85,24 @@ h2 {
   color: black;
   background-color: white;
   margin-bottom: 10px;
+}
+
+
+
+
+/*変更箇所*/
+.message{
+	padding-left: 90px;
+} 
+.message p{
+	margin: 0%;
+}
+
+.center-column{
+	padding-top: 0%
+}
+
+#currentDateTime{
+	text-align: center;
+	margin: 0%;
 }

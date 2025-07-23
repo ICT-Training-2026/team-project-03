@@ -20,7 +20,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e0f7fa;
+  background:#f7d8ea;
   padding: 1rem 2rem;
   border-bottom: 1px solid #ccc;
 }
@@ -44,6 +44,7 @@ a {
 /* テーブル */
 .register-table {
   width: 100%;
+  margin: 0 auto; 
   border-collapse: collapse;
   margin-bottom: 1rem;
 }
@@ -70,6 +71,11 @@ a {
   padding: 0.3rem;
   border: 1px solid #bbb;
   border-radius: 3px;
+}
+
+.register-table td:last-child,
+.register-table th:last-child {
+  width: 65px; 
 }
 
 /* row 操作ボタン */

@@ -8,22 +8,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
 }
 .logo {
-	width: 150px;
-	 height: 100%;
-	 background-color: #c9439c;
-	 color: white;
-	 font-weight: bold;
-	 font-style: italic;
-	 font-size: 1.5rem;
-	 display: block;
-	 align-items: center;
-	 justify-content: center;
-	 text-align: center;
-	 padding-top: 26px;
-	 padding-bottom: 26px;	 
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+  background-color: #b34791;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 header nav a {
   text-decoration: none;
