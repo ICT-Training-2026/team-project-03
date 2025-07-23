@@ -6,18 +6,13 @@ let rowIndex = 1;
 while (params.get(`id${rowIndex}`)) {
   const tr = document.createElement("tr");
   tr.innerHTML = `
-<<<<<<< HEAD
-    <  <td>${rowIndex}</td>
-=======
-  <td>${rowIndex}</td>
->>>>>>> refs/remotes/origin/master
-      <td>${params.get(`id${rowIndex}`) || ""}</td>
-      <td>${params.get(`name${rowIndex}`) || ""}</td>
-      <td>${params.get(`pass${rowIndex}`) || ""}</td>
-      <td>${params.get(`mail${rowIndex}`) || ""}</td>
-      <td>${params.get(`dept${rowIndex}`) || ""}</td>
-      <td>${params.get(`date${rowIndex}`) || ""}</td>
-  	<td>${params.get(`admin${rowIndex}`) || ""}</td>
+    <td>${rowIndex}</td>
+    <td>${params.get(`id${rowIndex}`) || ""}</td>
+    <td>${params.get(`name${rowIndex}`) || ""}</td>
+    <td>${params.get(`pass${rowIndex}`) || ""}</td>
+    <td>${params.get(`mail${rowIndex}`) || ""}</td>
+    <td>${params.get(`dept${rowIndex}`) || ""}</td>
+    <td>${params.get(`date${rowIndex}`) || ""}</td>
   `;
   tableBody.appendChild(tr);
   rowIndex++;
