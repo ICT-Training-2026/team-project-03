@@ -1,3 +1,5 @@
+console.log("main.js が読み込まれました！");
+
 // main.js - 勤怠登録画面のフロントエンドロジック
 
 // ページ全体のコンテンツが読み込まれた後に実行されるように設定
@@ -73,13 +75,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------------
   // カレンダー機能 (flatpickr ライブラリを使用)
   // -----------------------------------------------
-  const dateInput = document.getElementById("dateInput");
-  const selectedDateSpan = document.getElementById("selectedDate");
+  const displayDateInput = document.getElementById("displayDateInput");
+  const displaySelectedDateSpan = document.getElementById("displaySelectedDate");
+  const registerDateInput = document.getElementById("registerDateInput");
+  const registerSelectedDateSpan = document.getElementById("registerSelectedDate");
 
   /**
    * カレンダーの初期設定と日付選択時の処理。
    * flatpickr ライブラリを使ってカレンダーを表示し、
-   * 日付が選択されたら、その日付をフォームに設定します。
+   * 日付が選択されたら、その日付を両方のフォームに設定します。
    */
   flatpickr("#calendar", {
     locale: "ja", // 日本語ロケールを設定
@@ -87,9 +91,12 @@ document.addEventListener("DOMContentLoaded", () => {
     defaultDate: new Date(), // 初期表示は今日の日付
     // 日付が選択されたときの処理
     onChange: function(selectedDates, dateStr) {
-      // 選択された日付を画面に表示する要素と、フォームの隠しフィールドに設定
-      selectedDateSpan.textContent = dateStr;
-      dateInput.value = dateStr;
+      // 選択された日付を検索結果表示フォームに設定
+      displaySelectedDateSpan.textContent = dateStr;
+      displayDateInput.value = dateStr;
+      // 選択された日付を登録・更新フォームに設定
+      registerSelectedDateSpan.textContent = dateStr;
+      registerDateInput.value = dateStr;
     }
   });
 
@@ -148,15 +155,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------------
   const searchKintaiBtn = document.getElementById("searchKintaiBtn");
 
+  // 検索結果表示フォームの要素
+  const displayStatus = document.getElementById("displayStatus");
+  const displayStartHour = document.getElementById("displayStartHour");
+  const displayStartMin = document.getElementById("displayStartMin");
+  const displayEndHour = document.getElementById("displayEndHour");
+  const displayEndMin = document.getElementById("displayEndMin");
+
   /**
-   * 勤怠情報をAPIから取得し、フォームに表示する関数。
+   * 勤怠情報をAPIから取得し、検索結果表示フォームに表示する関数。
    * 検索ボタンがクリックされたときに実行されます。
    */
   async function searchAndDisplayKintai() {
     console.log("[searchAndDisplayKintai] 関数が開始されました。"); // デバッグ用ログ
 
     // 選択されている日付とログイン中のユーザーIDを取得
-    const selectedDate = dateInput.value;
+    const selectedDate = displayDateInput.value; // displayDateInput を使用
     const currentUserId = sessionStorage.getItem("loginUserId");
 
     console.log(`[searchAndDisplayKintai] 選択日付: ${selectedDate}, ユーザーID: ${currentUserId}`); // デバッグ用ログ
@@ -187,17 +201,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (Array.isArray(kintaiDataList) && kintaiDataList.length > 0) {
         const kintaiRecord = kintaiDataList[0]; // その日の勤怠レコード（通常は1件）
 
-        // 取得した勤怠情報をフォームの各フィールドにセット
-        document.getElementById("status").value = ATTENDANCE_STATUS_MAP[kintaiRecord.attId] || "出勤";
-        document.getElementById("startHour").value = kintaiRecord.inTimeH || "";
-        document.getElementById("startMin").value = kintaiRecord.inTimeM || "";
-        document.getElementById("endHour").value = kintaiRecord.outTimeH || "";
-        document.getElementById("endMin").value = kintaiRecord.outTimeM || "";
+        // 取得した勤怠情報を検索結果表示フォームの各フィールドにセット
+        displayStatus.value = ATTENDANCE_STATUS_MAP[kintaiRecord.attId] || "出勤";
+        displayStartHour.value = kintaiRecord.inTimeH || "";
+        displayStartMin.value = kintaiRecord.inTimeM || "";
+        displayEndHour.value = kintaiRecord.outTimeH || "";
+        displayEndMin.value = kintaiRecord.outTimeM || "";
 
         showMessage("勤怠情報を表示しました。", 'success');
       } else {
-        // 勤怠情報がない場合、フォームの入力欄をクリア
-        clearKintaiForm();
+        // 勤怠情報がない場合、検索結果表示フォームの入力欄をクリア
+        clearDisplayKintaiForm();
         showMessage("この日の勤怠情報はありません。", 'info');
       }
     } catch (error) {
@@ -207,14 +221,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 勤怠入力フォームのフィールドをクリアする関数。
+   * 勤怠表示フォームのフィールドをクリアする関数。
    */
-  function clearKintaiForm() {
-    document.getElementById("status").value = "出勤"; // デフォルト値
-    document.getElementById("startHour").value = "";
-    document.getElementById("startMin").value = "";
-    document.getElementById("endHour").value = "";
-    document.getElementById("endMin").value = "";
+  function clearDisplayKintaiForm() {
+    displayStatus.value = "出勤"; // デフォルト値
+    displayStartHour.value = "";
+    displayStartMin.value = "";
+    displayEndHour.value = "";
+    displayEndMin.value = "";
   }
 
   // 検索ボタンにクリックイベントリスナーを設定
@@ -223,25 +237,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // -----------------------------------------------
+  // 勤怠登録・更新フォームへのコピー機能
+  // -----------------------------------------------
+  const copyToRegisterBtn = document.getElementById("copyToRegisterBtn");
+
+  // 登録・更新フォームの要素
+  const registerStatus = document.getElementById("registerStatus");
+  const registerStartHour = document.getElementById("registerStartHour");
+  const registerStartMin = document.getElementById("registerStartMin");
+  const registerEndHour = document.getElementById("registerEndHour");
+  const registerEndMin = document.getElementById("registerEndMin");
+
+  /**
+   * 検索結果表示フォームの勤怠情報を、登録・更新フォームにコピーする関数。
+   */
+  function copyDisplayToRegisterForm() {
+    // 検索結果表示フォームから値を取得
+    const status = displayStatus.value;
+    const startHour = displayStartHour.value;
+    const startMin = displayStartMin.value;
+    const endHour = displayEndHour.value;
+    const endMin = displayEndMin.value;
+
+    // 登録・更新フォームに値をセット
+    registerStatus.value = status;
+    registerStartHour.value = startHour;
+    registerStartMin.value = startMin;
+    registerEndHour.value = endHour;
+    registerEndMin.value = endMin;
+
+    showMessage("検索結果を登録フォームにコピーしました。", 'info');
+  }
+
+  // コピーボタンにクリックイベントリスナーを設定
+  if (copyToRegisterBtn) {
+    copyToRegisterBtn.addEventListener("click", copyDisplayToRegisterForm);
+  }
+
+  // -----------------------------------------------
   // 勤怠フォーム送信機能 (登録/更新)
   // -----------------------------------------------
-  const kintaiForm = document.getElementById("kintaiForm");
+  const kintaiRegisterForm = document.getElementById("kintaiRegisterForm"); // 新しいフォームID
 
   /**
    * 勤怠フォームのデータをバックエンドに送信し、登録または更新を行う関数。
    * 「登録」ボタンがクリックされたときに実行されます。
    */
-  async function submitKintaiForm() {
-    // フォームから各入力値を取得
-    const selectedDate = dateInput.value;
-    const statusDisplayName = document.getElementById("status").value;
-    // 表示名から勤怠区分IDに変換
-    const statusId = REVERSE_ATTENDANCE_STATUS_MAP[statusDisplayName] || "A001";
+  async function submitKintaiForm(event) {
+    event.preventDefault(); // デフォルトのフォーム送信を阻止
 
-    const startHour = document.getElementById("startHour").value;
-    const startMin = document.getElementById("startMin").value;
-    const endHour = document.getElementById("endHour").value;
-    const endMin = document.getElementById("endMin").value;
+    // フォームから各入力値を取得 (register フォームから取得)
+    const selectedDate = registerDateInput.value; // registerDateInput を使用
+    const statusDisplayName = registerStatus.value; // registerStatus を使用
+    // 表示名から勤怠区分IDに変換
+    const statusId = REVERSE_ATTENDANCE_STATUS_MAP[statusDisplayName] || "A001"; // デフォルト値を追加
+
+    const startHour = registerStartHour.value; // registerStartHour を使用
+    const startMin = registerStartMin.value; // registerStartMin を使用
+    const endHour = registerEndHour.value; // registerEndHour を使用
+    const endMin = registerEndMin.value; // registerEndMin を使用
     const currentUserId = sessionStorage.getItem("loginUserId");
 
     // 必須項目が全て入力されているかチェック
@@ -263,6 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
       startTime: `${startHour}:${startMin}`,
       endTime: `${endHour}:${endMin}`
     };
+    console.log("[submitKintaiForm] 送信する勤怠データ:", kintaiData); // デバッグ用ログを追加
 
     try {
       // バックエンドの勤怠登録/更新APIを呼び出し
@@ -282,6 +337,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const resultText = await response.text(); // サーバーからのテキストレスポンスを待つ (例: 'OK')
       if (resultText === "OK") {
         showMessage("勤怠情報が正常に保存されました。", 'success');
+        // 登録・更新後、登録フォームをクリアするか、または表示フォームを更新するなどの処理を追加することも可能
+        // 例: clearRegisterKintaiForm();
       } else {
         // 'OK' 以外のレスポンスがあった場合
         showMessage("勤怠情報の保存に失敗しました。予期せぬレスポンス: " + resultText, 'error');
@@ -293,8 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 勤怠フォームに送信イベントリスナーを設定
-  if (kintaiForm) { // 要素が存在するかチェック
-    kintaiForm.addEventListener("submit", submitKintaiForm);
+  if (kintaiRegisterForm) { // 要素が存在するかチェック
+    kintaiRegisterForm.addEventListener("submit", submitKintaiForm);
   }
 
 }); // DOMContentLoaded 終了

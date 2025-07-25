@@ -41,7 +41,7 @@ public class KintaiRepositoryImpl implements KintaiRepository {
             kintaiRecord.setOutTimeM(resultSet.getString("out_time_m"));
             kintaiRecord.setUserId(resultSet.getString("user_id"));
             kintaiRecord.setDepartId(resultSet.getString("depart_id"));
-            kintaiRecord.setAttId(resultSet.getString("att_id"));
+            kintaiRecord.setAttId(resultSet.getString("att_id")); // getInt から getString に戻す
             return kintaiRecord;
         }
     };

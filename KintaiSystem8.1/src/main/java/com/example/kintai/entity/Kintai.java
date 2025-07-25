@@ -18,7 +18,7 @@ public class Kintai {
     // ===== JDBC 直接用のフィールドを追加 =====
     private String userId;      // ユーザーID
     private String departId;    // 部署ID
-    private String attId;       // 勤怠区分ID
+    private String attId;       // 勤怠区分ID (int から String に戻す)
 
     // ====== Getter / Setter ======
 

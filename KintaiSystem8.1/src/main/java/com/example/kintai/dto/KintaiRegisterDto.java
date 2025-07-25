@@ -8,7 +8,7 @@ import lombok.Setter;
 public class KintaiRegisterDto {
     private String userId;
     private String date;
-    private String status;
+    private String status; // int から String に戻す
     private String startTime;
     private String endTime;
     private String departId; // 部署IDを追加
