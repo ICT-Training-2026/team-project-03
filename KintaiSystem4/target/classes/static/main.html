@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>M社 勤怠登録</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
@@ -16,11 +15,15 @@
     </nav>
   </header>
 
-  <!-- ログイン中ユーザー表示 -->
-  <div id="login-user-info" style="text-align:right; margin:10px; font-weight:bold; color:#333;"></div>
+  <!-- ▼ここを追加：ログイン中のユーザー名表示 -->
+  <div id="login-user-info" style="text-align:right; margin:10px; font-weight:bold; color:#333;">
+    <!-- JSで「〇〇 さんログイン中です」と挿入 -->
+  </div>
+  <!-- ▲ここまで追加 -->
 
   <div class="container">
     <div class="left-column">
+	　<p style="text-align:center; font-weight:bold; margin-bottom: 10px;">日付を選択してください</p>
       <div id="calendar"></div>
     </div>
 
@@ -34,6 +37,7 @@
             <span id="selectedDate">----</span>
             <input type="hidden" id="dateInput" name="date">
           </div>
+
           <div>
             <label>出勤区分</label>
             <select name="status" id="status">
@@ -45,15 +49,17 @@
               <option>休日</option>
             </select>
           </div>
+
           <div>
             <label>出勤時間</label>
             <input type="number" name="startHour" id="startHour" min="0" max="23" required> ：
-            <input type="number" name="startMin"  id="startMin"  min="0" max="59" required>
+            <input type="number" name="startMin" id="startMin" min="0" max="59" required>
           </div>
+
           <div>
             <label>退勤時間</label>
-            <input type="number" name="endHour"   id="endHour"   min="0" max="23" required> ：
-            <input type="number" name="endMin"    id="endMin"    min="0" max="59" required>
+            <input type="number" name="endHour" id="endHour" min="0" max="23" required> ：
+            <input type="number" name="endMin" id="endMin" min="0" max="59" required>
           </div>
         </div>
 
@@ -63,21 +69,32 @@
           ※24時間表示で入力してください
         </p>
 
-        <div class="button-group">
-          <button type="button" id="searchKintaiBtn" class="search-btn">検索</button>
-          <button type="submit" class="submit-btn">登録</button>
-        </div>
+        <button type="submit" class="submit-btn">登録</button>
       </form>
     </div>
 
     <div class="right-column">
-      <a href="department.html" id="link-dept">部署勤怠情報</a><br>
-      <a href="shinki.html"      id="link-new">ユーザー登録</a>
+      <a href="department.html">部署勤怠情報</a>
+      <a href="shinki.html">ユーザー登録</a>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
   <script src="main.js"></script>
+
+  <!-- ▼ここを追加：ログイン中のユーザー表示用スクリプト -->
+  <script>
+    // ログインしたときに sessionStorage に保存してある userName を取得
+    const loginUserName = sessionStorage.getItem("loginUserName");
+    if (loginUserName) {
+      document.getElementById("login-user-info").textContent = `${loginUserName} さんがログイン中です`;
+    } else {
+      // 念のため未ログインならログイン画面へ
+      alert("ログインしてください");
+      window.location.href = "login.html";
+    }
+  </script>
+  <!-- ▲ここまで追加 -->
 </body>
 </html>

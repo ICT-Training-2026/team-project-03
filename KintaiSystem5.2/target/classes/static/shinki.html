@@ -2,15 +2,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>新規ユーザー登録</title>
+  <title>新規登録画面</title>
   <!-- flatpickr の CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="shinki.css">
 </head>
 <body>
   <header class="header">
-    <h1>新規ユーザー登録</h1>
-    <a href="main.html" class="btn-top">メインに戻る</a>
+    <h1>新規登録画面</h1>
+    <a href="main.html" class="btn-top">TOPに戻る</a>
   </header>
 
   <main class="main">
@@ -36,7 +36,12 @@
             <td><input type="password" name="pass" required></td>
             <td><input type="email" name="mail" required></td>
             <td>
-				<input type="text" id="departId" name="departId" required placeholder="例: 営業部D001">
+              <select name="departId" required>
+                <option value="">選択してください</option>
+                <option value="D001">営業部</option>
+                <option value="D002">開発部</option>
+                <option value="D003">総務部</option>
+              </select>
             </td>
             <!-- カレンダー表示用のクラスを残す -->
             <td><input type="text" class="flatpickr" name="hireDate" placeholder="yyyy-mm-dd" required></td>

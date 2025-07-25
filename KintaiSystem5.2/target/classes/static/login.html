@@ -2,18 +2,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログイン</title>
-  <link rel="stylesheet" href="/login.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <div class="header">
-	 <div class="header-title">HAITO</div>
-  </div>
   <div class="login-container">
     <h1>ログイン</h1>
     <form id="login-form">
-      <label for="login-id">社員ID</label>
+      <label for="login-id">ログインID</label>
       <input type="text" id="login-id" name="login-id" required>
 
       <label for="password">パスワード</label>
@@ -29,6 +26,7 @@
 
       const id = document.getElementById("login-id").value.trim();
       const pw = document.getElementById("password").value.trim();
+
       if (!id || !pw) {
         alert("IDとパスワードを入力してください。");
         return;
@@ -44,7 +42,10 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: params.toString()
         });
-        if (!response.ok) throw new Error("サーバーエラー");
+
+        if (!response.ok) {
+          throw new Error("サーバーエラー");
+        }
 
         const text = await response.text();
         if (!text) {
@@ -53,15 +54,17 @@
         }
 
         const user = JSON.parse(text);
+        console.log("レスポンス:", user);
+
         if (user && user.userId) {
-          // ログイン成功 → sessionStorage に保存
+          // ✅ ログイン成功 → sessionStorage に保存
           sessionStorage.setItem("loginUserId", user.userId);
           sessionStorage.setItem("loginUserName", user.userName);
-          sessionStorage.setItem("loginUserAdmin", String(user.admin ?? 0));
 
-          // メイン画面へ遷移
+          // main.html に遷移
           window.location.href = "main.html";
         } else {
+          // ❌ ログイン失敗
           alert("ユーザーIDまたはパスワードが正しくありません。");
         }
       } catch (err) {
