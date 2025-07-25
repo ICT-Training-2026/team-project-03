@@ -30,4 +30,9 @@ public class UserService {
         // パスワードは実際はハッシュ比較が必要
         return userRepository.findByUserIdAndPass(userId, rawPass);
     }
+
+    // userIdでユーザー取得
+    public Optional<User> findByUserId(String userId) {
+        return userRepository.findByUserId(userId);
+    }
 }
