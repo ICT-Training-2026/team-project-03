@@ -7,27 +7,34 @@
 </head>
 <body>
   <h1>各部署勤怠情報</h1>
-  <h2>〇〇部署勤退情報</h2>
+  <!-- 部署名表示 -->
+  <h2 id="selectedDepartmentName"></h2>
 
   <div class="search-bar">
     <form id="searchForm">
-      <label>部署ID：</label><input type="text" id="departmentId">
-      <label>個人ID：</label><input type="text" id="personId">
+      <div>
+        <label for="departmentSelect">部署選択：</label>
+        <select id="departmentSelect"></select>
+      </div>
+      <div class="month-select">
+        <label for="yearSelect">年月：</label>
+        <select id="yearSelect"></select>
+        <select id="monthSelect"></select>
+      </div>
       <button type="submit">検索</button>
     </form>
-  </div>
-
-  <div class="month-select">
-    <label>年月：</label>
-    <select id="yearSelect"></select>
-    <select id="monthSelect"></select>
   </div>
 
   <div class="table-container">
     <table id="attendanceTable">
       <thead>
-        <tr id="dayRow"><th rowspan="2">曜日</th><th rowspan="2">氏名</th></tr>
-        <tr id="weekRow"></tr>
+        <tr>
+          <th>氏名</th>
+          <th>日付</th>
+          <th>出勤時間</th>
+          <th>退勤時間</th>
+          <th>勤怠区分</th>
+        </tr>
       </thead>
       <tbody id="tableBody">
       </tbody>
@@ -44,15 +51,8 @@
     <a href="main.html"><button>TOPに戻る</button></a>
   </div>
 
-  <!-- 
-    🔁 後端から取得する必要があるデータ：
-    - /api/attendance?departmentId=xxx&year=2025&month=7
-    - /api/attendance?personId=yyy&year=2025&month=7
-    ✅ 曜日・日数などは JS 側で自動生成します
-    <script src="department.js"></script>
-  -->
-
-  <script src="department.mock.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  <script src="department.js"></script>
 </body>
 </html>
