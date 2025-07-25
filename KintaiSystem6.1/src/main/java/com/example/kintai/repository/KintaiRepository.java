@@ -9,6 +9,9 @@ public interface KintaiRepository {
     // 勤怠登録
     void insert(Kintai k);
 
+    // 勤怠更新
+    void update(Kintai k);
+
     // 個人別勤怠取得
     List<Kintai> selectByUserAndDate(String userId, Date date);
 

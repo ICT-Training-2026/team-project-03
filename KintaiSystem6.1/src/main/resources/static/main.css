@@ -76,6 +76,25 @@ h2 {
   cursor: pointer;
   margin-top: 15px;
 }
+
+.search-btn {
+  background-color: #D3D3D3; /* 検索ボタンの色を調整 */
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 10px; /* 登録ボタンとの間隔 */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* ボタンを中央寄せ */
+  gap: 10px; /* ボタン間のスペース */
+  margin-top: 20px; /* 上部との余白 */
+}
+
 .right-column a {
   display: block;
   border: 1px solid black;

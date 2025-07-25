@@ -1,3 +1,4 @@
+// src/main/resources/static/department.js
 const yearSelect = document.getElementById("yearSelect");
 const monthSelect = document.getElementById("monthSelect");
 const departmentSelect = document.getElementById("departmentSelect");
