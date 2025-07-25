@@ -11,4 +11,5 @@ public class KintaiRegisterDto {
     private String status;
     private String startTime;
     private String endTime;
+    private String departId; // 部署IDを追加
 }

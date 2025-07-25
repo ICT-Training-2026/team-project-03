@@ -10,6 +10,8 @@ public interface UserRepository extends JpaRepository<User, String> {
     // ログイン認証用
     Optional<User> findByUserIdAndPass(String userId, String pass);
 
+    Optional<User> findByUserId(String userId);
+
     // 部署IDで一覧取得なども必要なら
     // List<User> findByDepartment_DepartmentId(String departmentId);
 }

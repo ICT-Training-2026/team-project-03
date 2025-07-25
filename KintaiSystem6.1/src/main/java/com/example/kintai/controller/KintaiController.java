@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.kintai.dto.KintaiRegisterDto;
 import com.example.kintai.entity.Kintai;
 import com.example.kintai.service.KintaiService;
+import com.example.kintai.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class KintaiController {
 
     private final KintaiService kintaiService;
+    private final UserService userService;
     @PostMapping("/register")
     public String register(@RequestBody KintaiRegisterDto dto) {
         Kintai k = new Kintai();
@@ -51,8 +53,8 @@ public class KintaiController {
         // ユーザーID
         k.setUserId(dto.getUserId());
 
-        // 部署ID（ユーザーマスタから取得してたなら、今後 dto に departmentId も入れてもらうか固定値）
-        k.setDepartId("D001"); // ★ 必要に応じて修正
+        // ユーザー情報から部署IDを取得してセット
+        userService.findByUserId(dto.getUserId()).ifPresent(user -> k.setDepartId(user.getDepartmentId()));
 
         // 勤怠区分ID
         k.setAttId(dto.getStatus());
