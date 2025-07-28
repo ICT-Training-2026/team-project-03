@@ -5,11 +5,11 @@ body {
 }
 
 .notice {
-  background-color: #e0f4dd;
+  background-color: #F7D8EA;
   color: #000;
   font-weight: bold;
   padding: 10px;
-  border: 1px solid #a3d1a3;
+  border: 1px solid #F7D8EA;
   width: 80%;
   margin: 0 auto 20px auto;
   border-radius: 5px;
@@ -39,17 +39,37 @@ th, td {
 }
 
 .btn {
-  padding: 10px 20px;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 1px solid #000;
-  cursor: pointer;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	background-color: #4CAF50;
+	color: white(0, 0, 0);
+	cursor: pointer;
+	border-radius: 5px;
+	box-sizing: border-box;
 }
 
 .btn-return {
   background-color: #f3cccc;
+    color: #333;
+}
+
+.btn-return:link,
+.btn-return:visited {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .btn-submit {
-  background-color: #cce0f9;
+  background-color: #66bb6a;
+  
 }
+
+
