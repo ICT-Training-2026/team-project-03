@@ -39,37 +39,22 @@ th, td {
 }
 
 .btn {
-	display: inline-block;
-	padding: 10px 20px;
-	font-size: 16px;
-	border: none;
-	text-align: center;
-	text-decoration: none;
-	background-color: #4CAF50;
-	color: white(0, 0, 0);
-	cursor: pointer;
-	border-radius: 5px;
-	box-sizing: border-box;
+  padding: 12px 32px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .btn-return {
-  background-color: #f3cccc;
-    color: #333;
-}
-
-.btn-return:link,
-.btn-return:visited {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-decoration: none;
-  border-radius: 5px;
-  box-sizing: border-box;
+  background-color: #29b6f6;
+  color: rgb(255, 255, 255);
 }
 
 .btn-submit {
-  background-color: #66bb6a;
-  
+  background-color: #81c784;
+  color: rgb(255, 255, 255);
 }
+
 
 
