@@ -135,7 +135,17 @@ function renderTableWithCheckboxes(list, lastDay) {
         }[rec.attId] || rec.attId;
         const inTime  = rec.inTimeH!=null  ? `${rec.inTimeH}:${rec.inTimeM}`  : "--:--";
         const outTime = rec.outTimeH!=null ? `${rec.outTimeH}:${rec.outTimeM}` : "--:--";
-        td.className = rec.attId==="1" ? "green-cell" : "red-cell";
+        
+        // 勤怠区分に基づいてセルのクラスを設定
+        if (rec.attId === "1" || rec.attId === "A001") {
+          td.className = "green-cell"; // 通常出勤は緑
+        } else if (rec.attId === "2" || rec.attId === "A002" || // 欠勤
+                   rec.attId === "6" || rec.attId === "A006") { // 休日
+          td.className = "red-cell"; // 欠勤・休日は赤
+        } else {
+          td.className = ""; // その他の勤怠区分はスタイルなし (必要に応じて追加)
+        }
+
         td.title = `${statusName}\n出勤: ${inTime}\n退勤: ${outTime}`;
       }
       tr.append(td);
