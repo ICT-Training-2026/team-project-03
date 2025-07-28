@@ -6,6 +6,19 @@
   <link rel="stylesheet" href="confirmShinki.css">
 </head>
 <body>
+	<!-- ログイン & 管理者権限チェック -->
+	 <script>
+	   const loginUserName  = sessionStorage.getItem("loginUserName");
+	   const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
+	   if (!loginUserName) {
+	     alert("ログインしてください");
+	     window.location.href = "login.html";
+	   } else if (loginUserAdmin !== "1") {
+	     alert("管理者のみ閲覧可能です。");
+	     window.location.href = "main.html";
+	   }
+	 </script>
+	 
   <div class="notice">内容をご確認ください。</div>
 
   <h3>解答情報</h3>

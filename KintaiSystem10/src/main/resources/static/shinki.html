@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="shinki.css">
 </head>
 <body>
+	<!-- ログイン & 管理者権限チェック -->
+	 <script>
+	   const loginUserName  = sessionStorage.getItem("loginUserName");
+	   const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
+	   if (!loginUserName) {
+	     alert("ログインしてください");
+	     window.location.href = "login.html";
+	   } else if (loginUserAdmin !== "1") {
+	     alert("管理者のみ閲覧可能です。");
+	     window.location.href = "main.html";
+	   }
+	 </script>
   <header class="header">
     <h1>新規ユーザー登録</h1>
     <a href="main.html" class="btn-top">メインに戻る</a>

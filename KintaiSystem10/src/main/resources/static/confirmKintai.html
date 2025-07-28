@@ -6,6 +6,15 @@
   <link rel="stylesheet" href="confirmKintai.css">
 </head>
 <body>
+	
+	<!-- ログインチェック -->
+	 <script>
+	   const loginUserName = sessionStorage.getItem("loginUserName");
+	   if (!loginUserName) {
+	     alert("ログインしてください");
+	     window.location.href = "login.html";
+	   }
+	 </script>
   <div class="notice">内容をご確認ください。</div>
 
   <h3>勤怠情報</h3>

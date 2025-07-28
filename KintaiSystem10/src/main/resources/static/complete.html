@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="complete.css">
 </head>
 <body>
+	<!-- ログインチェック -->
+	<script>
+	  const loginUserName = sessionStorage.getItem("loginUserName");
+	  if (!loginUserName) {
+	    alert("ログインしてください");
+	    window.location.href = "login.html";
+	  }
+	</script>
   <h1>登録完了画面</h1>
 
   <div class="message-box">
