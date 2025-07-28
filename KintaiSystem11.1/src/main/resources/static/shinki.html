@@ -8,18 +8,19 @@
   <link rel="stylesheet" href="shinki.css">
 </head>
 <body>
-	<!-- ログイン & 管理者権限チェック -->
-	 <script>
-	   const loginUserName  = sessionStorage.getItem("loginUserName");
-	   const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
-	   if (!loginUserName) {
-	     alert("ログインしてください");
-	     window.location.href = "login.html";
-	   } else if (loginUserAdmin !== "1") {
-	     alert("管理者のみ閲覧可能です。");
-	     window.location.href = "main.html";
-	   }
-	 </script>
+  <!-- ログイン & 管理者権限チェック -->
+  <script>
+    const loginUserName  = sessionStorage.getItem("loginUserName");
+    const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
+    if (!loginUserName) {
+      alert("ログインしてください");
+      window.location.href = "login.html";
+    } else if (loginUserAdmin !== "1") {
+      alert("管理者のみ閲覧可能です。");
+      window.location.href = "main.html";
+    }
+  </script>
+
   <header class="header">
     <h1>新規ユーザー登録</h1>
     <a href="main.html" class="btn-top">メインに戻る</a>
@@ -47,10 +48,12 @@
             <td><input type="text" name="userName" required></td>
             <td><input type="password" name="pass" required></td>
             <td><input type="email" name="mail" required></td>
+            <!-- 部署プルダウンに変更 -->
             <td>
-				<input type="text" id="departId" name="departId" required placeholder="例: 営業部D001">
+              <select name="departId" required>
+                <option value="">部署を選択</option>
+              </select>
             </td>
-            <!-- カレンダー表示用のクラスを残す -->
             <td><input type="text" class="flatpickr" name="hireDate" placeholder="yyyy-mm-dd" required></td>
             <td class="center"><input type="checkbox" name="admin"></td>
           </tr>
@@ -59,7 +62,7 @@
 
       <div class="controls">
         <button type="button" id="removeRow" class="control-btn">－</button>
-        <button type="button" id="addRow" class="control-btn">＋</button>
+        <button type="button" id="addRow"    class="control-btn">＋</button>
       </div>
 
       <div class="submit-wrap">
@@ -68,9 +71,10 @@
     </form>
   </main>
 
-  <!-- flatpickr の JS とローカライズ、そして自分のスクリプト -->
+  <!-- flatpickr とローカライズ -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  <!-- 独自スクリプト -->
   <script src="shinki.js"></script>
 </body>
 </html>
