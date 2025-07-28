@@ -289,7 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // フォームから各入力値を取得 (register フォームから取得)
     const selectedDate = registerDateInput.value; // registerDateInput を使用
     const statusDisplayName = registerStatus.value; // registerStatus を使用
-    // 表示名から勤怠区分IDに変換
     const statusId = REVERSE_ATTENDANCE_STATUS_MAP[statusDisplayName] || "A001"; // デフォルト値を追加
 
     const startHour = registerStartHour.value; // registerStartHour を使用
@@ -309,44 +308,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 送信する勤怠データオブジェクトを作成
-    const kintaiData = {
+    // confirmKintai.html に渡すためのURLクエリパラメータを作成
+    const queryParams = new URLSearchParams({
       userId: currentUserId,
       date: selectedDate,
-      status: statusId, // IDを送信
+      status: statusId,
       startTime: `${startHour}:${startMin}`,
       endTime: `${endHour}:${endMin}`
-    };
-    console.log("[submitKintaiForm] 送信する勤怠データ:", kintaiData); // デバッグ用ログを追加
+    }).toString();
 
-    try {
-      // バックエンドの勤怠登録/更新APIを呼び出し
-      const response = await fetch('/api/kintai/register', {
-        method: 'POST', // POSTメソッドでデータを送信
-        headers: {
-          'Content-Type': 'application/json' // JSON形式でデータを送ることを指定
-        },
-        body: JSON.stringify(kintaiData) // JavaScriptオブジェクトをJSON文字列に変換して送信
-      });
-
-      // HTTPレスポンスが成功かどうかを確認
-      if (!response.ok) {
-        throw new Error(`勤怠情報の保存に失敗しました。サーバーエラー: ${response.status}`);
-      }
-
-      const resultText = await response.text(); // サーバーからのテキストレスポンスを待つ (例: 'OK')
-      if (resultText === "OK") {
-        showMessage("勤怠情報が正常に保存されました。", 'success');
-        // 登録・更新後、登録フォームをクリアするか、または表示フォームを更新するなどの処理を追加することも可能
-        // 例: clearRegisterKintaiForm();
-      } else {
-        // 'OK' 以外のレスポンスがあった場合
-        showMessage("勤怠情報の保存に失敗しました。予期せぬレスポンス: " + resultText, 'error');
-      }
-    } catch (error) {
-      console.error("勤怠情報の保存中にエラーが発生しました:", error); // 開発者向けのエラーログ
-      showMessage("勤怠情報の保存中にエラーが発生しました: " + error.message, 'error');
-    }
+    // confirmKintai.html へ遷移
+    window.location.href = `confirmKintai.html?${queryParams}`;
   }
 
   // 勤怠フォームに送信イベントリスナーを設定

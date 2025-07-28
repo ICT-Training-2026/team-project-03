@@ -1,7 +1,19 @@
 // URLパラメータから取得して画面に反映
 const params = new URLSearchParams(window.location.search);
 document.getElementById("confirm-date").textContent = params.get("date") || "";
-document.getElementById("confirm-status").textContent = params.get("status") || "";
+
+// 勤怠区分ID (status) を表示名に変換して表示
+const ATTENDANCE_STATUS_MAP = {
+  "A001": "出勤",
+  "A002": "欠勤",
+  "A003": "振出",
+  "A004": "振休",
+  "A005": "年休",
+  "A006": "休日"
+};
+const statusId = params.get("status") || "A001"; // URLパラメータからIDを取得
+document.getElementById("confirm-status").textContent = ATTENDANCE_STATUS_MAP[statusId] || "";
+
 document.getElementById("confirm-start").textContent = params.get("startTime") || "";
 document.getElementById("confirm-end").textContent = params.get("endTime") || "";
 
@@ -9,10 +21,10 @@ document.getElementById("confirm-end").textContent = params.get("endTime") || ""
 document.getElementById("submit-form").addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const date = document.getElementById("confirm-date").textContent;
-  const statusName = document.getElementById("confirm-status").textContent;
-  const startTime = document.getElementById("confirm-start").textContent; // 例: "9:10"
-  const endTime = document.getElementById("confirm-end").textContent;     // 例: "18:10"
+  const date = params.get("date") || ""; // クエリパラメータから直接取得
+  const status = params.get("status") || "A001"; // クエリパラメータから直接取得
+  const startTime = params.get("startTime") || "";
+  const endTime = params.get("endTime") || "";
 
   // sessionStorage からログインユーザーを取得
   const loginUserId = sessionStorage.getItem("loginUserId");
@@ -22,24 +34,17 @@ document.getElementById("submit-form").addEventListener("submit", async function
     return;
   }
 
-  // 出勤区分名からIDをマッピング
-  const attMap = {
-    "出勤": "1",
-    "欠勤": "2",
-    "振出": "3",
-    "振休": "4",
-    "年休": "5",
-    "休日": "6"
-  };
-  const attId = attMap[statusName] || "1";
-
-  // ✅ DTO に合わせたフィールド名で送信
   const payload = {
     userId: loginUserId,
-    status: attId,       // ← ここを status に変更
+    status: status, // IDを送信
     date: date,
-    startTime: startTime, // ← DTO の startTime に合わせて送信
-    endTime: endTime      // ← DTO の endTime に合わせて送信
+    inTimeH: parseInt(startTime.split(":")[0]),
+    inTimeM: parseInt(startTime.split(":")[1]),
+    outTimeH: parseInt(endTime.split(":")[0]),
+    outTimeM: parseInt(endTime.split(":")[1]),
+    year: parseInt(date.split("-")[0]),
+    month: parseInt(date.split("-")[1]),
+    day: parseInt(date.split("-")[2])
   };
 
   console.log("送信データ:", payload);
