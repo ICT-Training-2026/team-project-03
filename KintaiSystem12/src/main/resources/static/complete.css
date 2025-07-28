@@ -1,34 +1,33 @@
 body {
   font-family: "Yu Gothic", sans-serif;
+  background-color: #FDE2F0;
   text-align: center;
   padding: 50px;
+  margin: 0;
 }
 
-h1 {
-  margin-bottom: 40px;
-}
-
+/* メッセージを大きく・中央に目立たせる */
 .message-box {
-  margin: 0 auto 40px auto;
-  border: 2px solid #000;
-  border-radius: 20px;
-  width: 60%;
-  padding: 40px;
-  font-size: 24px;
+  font-size: 32px;        /* 大きくする */
   font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
 }
 
+/* ボタンのラッパー */
 .btn-wrap {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
+/* ボタンを小さくする */
 .btn {
   text-decoration: none;
-  background-color: #add8ff;
-  padding: 15px 40px;
-  border: 1px solid #000;
-  border-radius: 12px;
+  background-color: #039be5;
+  padding: 8px 20px;       /* 小さめに */
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 16px;
-  color: black;
+  font-size: 14px;         /* 少し小さく */
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  margin-top: 10px;
 }
