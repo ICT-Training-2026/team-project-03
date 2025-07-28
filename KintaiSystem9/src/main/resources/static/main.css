@@ -1,0 +1,127 @@
+body {
+  font-family: 'Yu Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #F7D8EA;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+	width: 150px;
+	 height: 100%;
+	 background-color: #C9439C;
+	 color: white;
+	 font-weight: bold;
+	 font-style: italic;
+	 font-size: 1.5rem;
+	 display: block;
+	 align-items: center;
+	 justify-content: center;
+	 text-align: center;
+	 padding-top: 26px;
+	 padding-bottom: 26px;	
+}
+header nav a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 20px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+.left-column,
+.right-column {
+  width: 20%;
+}
+.center-column {
+  width: 50%;
+  text-align: center;
+}
+.datetime {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+h2 {
+  text-align: center;
+  margin: 0%;
+}
+.form-box {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 20px;
+  width: 60%;  /* 更窄的宽度 */
+  margin: 0 auto;
+  text-align: center; /* 居中文字 */
+}
+.form-box div {
+  margin-bottom: 15px;
+}
+
+.note {
+  font-size: 12px;
+  color: #555;
+}
+.submit-btn {
+  background-color: #CCE0CC;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.search-btn {
+  background-color: #D3D3D3; /* 検索ボタンの色を調整 */
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 10px; /* 登録ボタンとの間隔 */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* ボタンを中央寄せ */
+  gap: 10px; /* ボタン間のスペース */
+  margin-top: 20px; /* 上部との余白 */
+}
+
+.right-column a {
+  display: block;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+
+
+
+/*変更箇所*/
+.message{
+	padding-left: 90px;
+} 
+.message p{
+	margin: 0%;
+}
+
+.center-column{
+	padding-top: 0%
+}
+
+#currentDateTime{
+	text-align: center;
+	margin: 0%;
+}
