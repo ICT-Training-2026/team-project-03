@@ -7,7 +7,6 @@ function populateDeptSelect(selectEl) {
   deptOptions.forEach(d => {
     const opt = document.createElement("option");
     opt.value = d.departId;
-    // 表示は「部署名 (ID)」形式
     opt.textContent = `${d.departName} (${d.departId})`;
     selectEl.appendChild(opt);
   });
@@ -19,14 +18,13 @@ async function loadDepartments() {
     const res = await fetch("/api/department/all");
     if (!res.ok) throw new Error("部署情報の取得に失敗しました");
     deptOptions = await res.json();
-    // 既存の <select name="departId"> 全てにプルダウンを流し込む
     document.querySelectorAll('select[name="departId"]').forEach(populateDeptSelect);
   } catch (err) {
     alert(err.message);
   }
 }
 
-// flatpickr の初期化と、初期データ読み込み
+// DOM読み込み後の初期化
 document.addEventListener("DOMContentLoaded", () => {
   // 日付ピッカー
   flatpickr(".flatpickr", {
@@ -44,14 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("addRow").addEventListener("click", () => {
     const rowCount = tbody.children.length;
     const newRow = tbody.children[0].cloneNode(true);
-    // 行番号更新
     newRow.querySelector(".row-index").textContent = rowCount + 1;
-    // 各入力欄クリア
     newRow.querySelectorAll("input, select").forEach(el => {
       if (el.type === "checkbox") el.checked = false;
       else el.value = "";
     });
-    // 部署 <select> は再度プルダウン埋め
     newRow.querySelectorAll('select[name="departId"]').forEach(populateDeptSelect);
     tbody.appendChild(newRow);
   });
@@ -63,35 +58,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // フォーム送信
-  document.getElementById("shinkiForm").addEventListener("submit", async function(e) {
+  // フォーム送信: 確認画面へ遷移
+  document.getElementById("shinkiForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    // 各行から DTO を組み立て
-    const dtos = Array.from(tbody.children).map(tr => {
-      const getVal = name => tr.querySelector(`[name="${name}"]`).value;
-      const isAdmin = tr.querySelector(`[name="admin"]`).checked;
-      return {
-        userId:   getVal("userId"),
-        userName: getVal("userName"),
-        pass:     getVal("pass"),
-        mail:     getVal("mail"),
-        departId: getVal("departId"),    // プルダウンから選ばれたID
-        hireDate: getVal("hireDate"),
-        admin:    isAdmin ? 1 : 0
-      };
+    // 各行からパラメータを組み立て
+    const params = new URLSearchParams();
+    Array.from(tbody.children).forEach((tr, index) => {
+      const i = index + 1;
+      const id   = tr.querySelector('[name="userId"]').value;
+      const name = tr.querySelector('[name="userName"]').value;
+      const pass = tr.querySelector('[name="pass"]').value;
+      const mail = tr.querySelector('[name="mail"]').value;
+      const dept = tr.querySelector('[name="departId"]').value;
+      const date = tr.querySelector('[name="hireDate"]').value;
+      const adminChecked = tr.querySelector('[name="admin"]').checked;
+      params.append(`id${i}`, id);
+      params.append(`name${i}`, name);
+      params.append(`pass${i}`, pass);
+      params.append(`mail${i}`, mail);
+      params.append(`dept${i}`, dept);
+      params.append(`date${i}`, date);
+      params.append(`admin${i}`, adminChecked ? "1" : "0");
     });
 
-    try {
-      const res = await fetch("/api/user/register", {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(dtos)
-      });
-      if (!res.ok) throw new Error(res.statusText);
-      alert("登録完了");
-      window.location.href = "main.html";
-    } catch (err) {
-      alert("登録に失敗しました: " + err.message);
-    }
+    // 確認画面へ遷移
+    window.location.href = `confirmShinki.html?${params.toString()}`;
   });
 });

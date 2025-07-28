@@ -1,23 +1,27 @@
+/* login.css */
+
 body {
-  font-family: '游ゴシック', 'Yu Gothic', sans-serif;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 84vh;
+  font-family: 'Yu Gothic', sans-serif;
   margin: 0;
-  flex-direction: column;
+  padding: 0;
+  /* ヘッダー固定分を考慮 */
+  padding-top: 90px;  /* ヘッダーの高さと同じ値を設定 */
 }
 
+/* ヘッダー */
 .header {
-  display: flex;
+  position: fixed;    /* 画面上部に固定 */
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 90px;
+  height: 90px;       /* お好みで調整 */
   background: linear-gradient(to right, #c9439c 150px, #fde2f0 150px);
+  display: flex;
   align-items: center;
-  
+  z-index: 1000;      /* 他要素より前面に表示 */
 }
 
+/* ヘッダータイトル */
 .header-title {
   width: 150px;
   height: 100%;
@@ -31,55 +35,55 @@ body {
   justify-content: center;
 }
 
+/* ログインフォーム周り */
 .login-container {
   text-align: center;
   padding: 40px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  margin-top: 20px;
+  background: #fff;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #000;
+.login-container h1 {
+  margin-bottom: 1.5em;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-label {
-  margin-bottom: 5px;
+.login-container label {
+  display: block;
+  margin-bottom: 0.5em;
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"] {
-  width: 250px;
-  height: 35px;
-  margin-bottom: 20px;
-  padding: 5px 10px;
-  font-size: 1rem;
-  border: 2px solid #000;
-  border-radius: 5px;
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #000;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
-button {
-  align-self: center;
+/* パスワード表示トグル */
+.show-password {
+  margin-bottom: 1em;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+/* ボタン */
+.login-container button {
   background-color: #fff2cc;
   border: 1px solid #000;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-button:hover {
+.login-container button:hover {
   background-color: #ffe599;
 }
