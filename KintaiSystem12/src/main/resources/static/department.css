@@ -1,40 +1,57 @@
-/* department.css */
-/* shinki.htmlと統一したヘッダー */
+/* login/shinki/department 共通ヘッダー */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 90px;
+  background: linear-gradient(to right, #C9439C 150px, #FDE2F0 150px);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #f7d8ea;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+  padding: 0;
   z-index: 1000;
-  height: 70px;
   box-sizing: border-box;
 }
 
-.header h1 {
+.header-title {
+  width: 150px;
+  height: 100%;
+  background-color: #C9439C;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
   margin: 0;
 }
+
 .btn-top {
   padding: 0.5rem 1rem;
   background: #29b6f6;
   color: white;
   border-radius: 4px;
-  font-weight: bold;
   text-decoration: none;
+  font-weight: bold;
+  margin-right: 20px;
 }
 .btn-top:hover {
   background: #039be5;
 }
 
+
 body {
   font-family: "Yu Gothic", sans-serif;
-  padding: 20px;
+  padding: 120px 20px 20px; /* header 高度 + 间距 */
 }
 h1, h2 {
   text-align: center;
