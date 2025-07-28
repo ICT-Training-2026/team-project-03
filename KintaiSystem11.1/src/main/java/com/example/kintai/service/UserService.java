@@ -1,4 +1,3 @@
-// src/main/java/com/example/kintai/service/UserService.java
 package com.example.kintai.service;
 
 import java.util.List;
@@ -62,8 +61,8 @@ public class UserService {
         return userRepository.findByUserId(userId);
     }
 
-	public List<User> getAllUsers() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    /** 全ユーザー取得（管理者用） */
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }
