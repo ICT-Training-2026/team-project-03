@@ -1,3 +1,5 @@
+// shinki.js
+
 // global に保持しておいて、どの行にも使い回す配列
 let deptOptions = [];
 
@@ -17,7 +19,9 @@ async function loadDepartments() {
   try {
     const res = await fetch("/api/department/all");
     if (!res.ok) throw new Error("部署情報の取得に失敗しました");
-    deptOptions = await res.json();
+    // 「人事部」を除外
+    const allDepts = await res.json();
+    deptOptions = allDepts.filter(d => d.departName !== '人事部');
     document.querySelectorAll('select[name="departId"]').forEach(populateDeptSelect);
   } catch (err) {
     alert(err.message);

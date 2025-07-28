@@ -10,17 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.kintai.entity.Department;
 import com.example.kintai.service.DepartmentService;
+//package, import は省略
 
 @RestController
 @RequestMapping("/api/department")
 @CrossOrigin
 public class DepartmentController {
 
-    @Autowired
-    private DepartmentService departmentService;
+ @Autowired
+ private DepartmentService departmentService;
 
-    @GetMapping("/all")
-    public List<Department> getAllDepartments() {
-        return departmentService.getAllDepartments();
-    }
+ @GetMapping("/all")
+ public List<Department> getAllDepartments() {
+     List<Department> list = departmentService.getAllDepartments();
+     // D004 → D003 に書き換え
+     list.forEach(d -> {
+         if ("D004".equals(d.getDepartId())) {
+             d.setDepartId("D003");
+         }
+     });
+     return list;
+ }
 }
