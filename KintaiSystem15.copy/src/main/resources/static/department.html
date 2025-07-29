@@ -1,0 +1,61 @@
+<!-- department.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>各部署勤怠情報</title>
+  <link rel="stylesheet" href="department.css">
+</head>
+<body>
+  <!-- ログイン & 管理者権限チェック -->
+  <script>
+    const loginUserName  = sessionStorage.getItem("loginUserName");
+    const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
+    if (!loginUserName) {
+      alert("ログインしてください");
+      window.location.href = "login.html";
+    } else if (loginUserAdmin !== "1") {
+      alert("管理者のみ閲覧可能です。");
+      window.location.href = "main.html";
+    }
+  </script>
+
+  <header class="header">
+	<div class="header-title">HAITO</div>
+    <h1>各部署勤怠情報</h1>
+    <a href="main.html" class="btn-top">メインに戻る</a>
+  </header>
+ 
+  <p class="ex">確認したい部署と年月を選択してください。</p>
+  <div class="search-bar">
+    <form id="searchForm">
+      <label for="departmentSelect">部署選択：</label>
+      <select id="departmentSelect"></select>
+      <label for="yearSelect">年月：</label>
+      <select id="yearSelect"></select>
+      <select id="monthSelect"></select>
+      <button type="submit">検索</button>
+    </form>
+  </div>
+  <h2 id="selectedDepartmentName"></h2>
+  <div class="table-container">
+    <table id="attendanceTable">
+      <thead></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <span class="legend green">通常出勤</span>
+    <span class="legend red">欠勤・休日</span>
+  </div>
+
+  <div class="buttons">
+    <button id="exportCSV">CSVファイルを出力</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  <script src="department.js"></script>
+</body>
+</html>

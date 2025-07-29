@@ -1,0 +1,275 @@
+body {
+  font-family: 'Yu Gothic', sans-serif;
+  margin: 0;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 90px;
+	background: linear-gradient(to right, #C9439C 150px, #FDE2F0 150px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0;
+	z-index: 1000;
+	box-sizing: border-box;
+}
+.logo {
+	width: 150px;
+	height: 100%;
+	background-color: #C9439C;
+	color: white;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+header nav a {
+  text-decoration: underline;
+  color: #333;
+  margin-right: 20px;
+}
+.dayselect{
+	
+	margin: 0%;
+	width: 200px;
+	padding-left: 110px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+ 
+}
+.left-column,
+.right-column
+ {
+  width: 20%;
+}
+
+.center-column {
+  width: 50%;
+  text-align: center;
+}
+.datetime {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+h2 {
+  text-align: center;
+  margin: 0%;
+}
+.form-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+
+.form-box > div {
+  flex-basis: calc(50% - 15px); /* 各項目を約50%の幅にして2列に配置 */
+  display: flex; /* ラベルと入力欄を横並びにするため */
+  align-items: center; /* 垂直方向中央揃え */
+  gap: 10px; /* ラベルと入力欄の間隔 */
+}
+
+.form-box label {
+  min-width: 80px; /* ラベルの最小幅を設定し、揃える */
+  text-align: right;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-box input[type="number"],
+.form-box select {
+  flex-grow: 1; /* 残りのスペースを埋めるように幅を広げる */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-box span {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.note {
+  font-size: 12px;
+  color: #555;
+}
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+.search-btn {
+  background-color: #D3D3D3; /* 検索ボタンの色を調整 */
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 10px; /* 登録ボタンとの間隔 */
+  margin-left: 70px;
+}
+
+.search-btn:hover {
+  background-color: #bfbfbf;
+}
+
+/* ボタン間隔の調整 */
+.button-group {
+  display: flex;
+  justify-content: center; /* ボタンを中央寄せ */
+  gap: 5px; /* ボタン間のスペースを減らす */
+  margin-top: 20px; /* 上部との余白 */
+}
+
+.right-column a {
+  display: block;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+
+
+
+/*変更箇所*/
+.message{
+	padding-left: 90px;
+} 
+.message p{
+	margin: 0%;
+}
+
+.center-column{
+	padding-top: 0%
+}
+
+#currentDateTime{
+	text-align: center;
+	margin: 0%;
+}
+
+/* center-column内のフォームを横並びにするためのコンテナ */
+/* #forms-container { */
+/*   display: flex; */
+/*   justify-content: space-around; */
+/*   gap: 20px; */
+/*   flex-wrap: wrap; */
+/*   margin-top: 20px; */
+/* } */
+
+/* #forms-container > div { */
+/*   flex: 1; */
+/*   min-width: 350px; */
+/*   background-color: #fff; */
+/*   padding: 20px; */
+/*   border-radius: 8px; */
+/*   box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+/* } */
+
+/* コピーボタンのスタイル調整 */
+#copyToRegisterBtn {
+  margin: 20px auto; /* 左右中央揃え、上下の余白 */
+  display: block; /* ブロック要素にしてmargin: autoを有効にする */
+  white-space: nowrap; /* テキストが途中で改行されないように */
+  transform: scale(0.8); /* コピーボタンのサイズを0.8倍に縮小 */
+}
+
+/* 検索結果フォームのサイズ調整 */
+#kintaiDisplayForm {
+  transform: scale(0.8); /* サイズを0.8倍に縮小 */
+  transform-origin: top center; /* 縮小の中心を上中央に設定 */
+  width: 125%; /* 0.8倍に縮小したときに元の幅を維持するように調整 (1 / 0.8 = 1.25) */
+  max-width: none; /* 既存のmax-widthがあれば解除 */
+  margin-left: -12.5%; /* 縮小による中央寄せのずれを補正 */
+  margin-right: -12.5%; /* 縮小による中央寄せのずれを補正 */
+}
+
+/* left-columnとcenter-columnの幅の調整 */
+.left-column {
+  flex: 0 0 400px; /* 左カラムの幅を固定または拡大 */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
+}
+
+.center-column {
+  flex-grow: 1; /* 中央カラムは残りのスペースを全て占める */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
+}
+
+.right-column {
+  width: 250px;
+  margin-top: 60px;
+  margin-left: 100px;
+}
+
+.left-column,
+.center-column {
+  width: calc((100% - 200px) / 2);
+}
+
+
+/* 既存のスタイルを保持または調整 */
+body {
+  font-family: 'Yu Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* flatpickr のスタイル調整 */
+.flatpickr-calendar {
+  width: 100%;
+  box-shadow: none;
+  border: none;
+  margin-bottom: 20px; /* カレンダーの下に余白を追加 */
+  margin-left: 40px;
+}
+
+.flatpickr-calendar .flatpickr-weekday {
+  font-weight: bold;
+}
+
+.flatpickr-calendar .flatpickr-day.selected,
+.flatpickr-calendar .flatpickr-day.selected:hover,
+.flatpickr-calendar .flatpickr-day.startRange,
+.flatpickr-calendar .flatpickr-day.startRange:hover,
+.flatpickr-calendar .flatpickr-day.endRange,
+.flatpickr-calendar .flatpickr-day.endRange:hover {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
