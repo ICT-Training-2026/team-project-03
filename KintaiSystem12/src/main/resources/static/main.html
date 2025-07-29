@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>M社 勤怠登録</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">HAITO</div>
+    <h1>M社　勤怠登録</h1>
+    <nav>
+      <!-- ログアウトリンクに id を付与 -->
+      <a href="#" id="logoutBtn">ログアウト</a>
+    </nav>
+  </header>
+  
+
+  <!-- ログイン中ユーザー表示 -->
+  <div id="login-user-info" style="text-align:right; margin:10px; font-weight:bold; color:#333;"></div>
+
+  <div class="container">
+    <div class="left-column">
+		<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+		  <div style="font-size:14px;">
+		    <span>日付を選択し、右で勤怠登録</span><br>
+			<span>過去のデータを確認する場合</span><br>
+		    <span>検索ボタンを押してください</span>
+		  </div>
+		  <button type="button" id="searchKintaiBtn" class="search-btn">検索</button>
+		</div>
+      <div id="calendar"></div>
+      <h2 class="display-title">検索結果</h2>
+      <form id="kintaiDisplayForm">
+        <div class="display-form-box">
+          <div>
+            <label>年月日</label>
+            <span id="displaySelectedDate">----</span>
+            <input type="hidden" id="displayDateInput" name="date">
+          </div>
+          <div>
+            <label>出勤区分</label>
+            <select name="displayStatus" id="displayStatus" disabled>
+              <option>出勤</option>
+              <option>欠勤</option>
+              <option>振出</option>
+              <option>振休</option>
+              <option>年休</option>
+              <option>休日</option>
+            </select>
+          </div>
+          <div>
+            <label>出勤時間</label>
+            <input type="number" name="displayStartHour" id="displayStartHour" min="0" max="23" readonly> ：
+            <input type="number" name="displayStartMin"  id="displayStartMin"  min="0" max="59" readonly>
+          </div>
+          <div>
+            <label>退勤時間</label>
+            <input type="number" name="displayEndHour"   id="displayEndHour"   min="0" max="23" readonly> ：
+            <input type="number" name="displayEndMin"    id="displayEndMin"    min="0" max="59" readonly>
+          </div>
+        </div>
+        <div class="button-group">
+          <button type="button" id="copyToRegisterBtn" class="submit-btn">この内容を編集する</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="center-column">
+      <div id="currentDateTime" class="datetime"></div>
+      <div id="messageArea" style="color: red; margin-bottom: 10px;"></div>
+      <h2>勤怠情報 登録・更新</h2>
+      <form id="kintaiRegisterForm">
+        <div class="form-box">
+          <div>
+            <label>年月日</label>
+            <span id="registerSelectedDate">----</span>
+            <input type="hidden" id="registerDateInput" name="date">
+          </div>
+          <div>
+            <label>出勤区分</label>
+            <select name="registerStatus" id="registerStatus">
+              <option>出勤</option>
+              <option>欠勤</option>
+              <option>振出</option>
+              <option>振休</option>
+              <option>年休</option>
+              <option>休日</option>
+            </select>
+          </div>
+          <div>
+            <label>出勤時間</label>
+            <input type="number" name="registerStartHour" id="registerStartHour" min="0" max="23" required> ：
+            <input type="number" name="registerStartMin"  id="registerStartMin"  min="0" max="59" required>
+          </div>
+          <div>
+            <label>退勤時間</label>
+            <input type="number" name="registerEndHour"   id="registerEndHour"   min="0" max="23" required> ：
+            <input type="number" name="registerEndMin"    id="registerEndMin"    min="0" max="59" required>
+          </div>
+        </div>
+        <p class="note">
+          ※全ての項目を入力してください<br>
+          ※半角数字で入力してください<br>
+		  ※欠勤や休日の場合00を入力してください<br>
+          ※24時間表示で入力してください
+        </p>
+        <div class="button-group">
+          <button type="submit" class="submit-btn">登録</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="right-column">
+      <a href="department.html" id="link-dept">部署勤怠情報</a><br>
+      <a href="shinki.html"      id="link-new">ユーザー登録</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
