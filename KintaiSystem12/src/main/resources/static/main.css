@@ -274,8 +274,7 @@ h2 {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
- 
-  flex-shrink: 0;
+   flex-shrink: 0;
 }
 
 
