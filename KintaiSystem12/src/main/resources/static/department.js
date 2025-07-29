@@ -34,7 +34,7 @@ async function loadDepartments() {
   // 初期表示
   if (depts.length) {
     departmentSelect.value = depts[0].departId;
-    selectedDepartmentName.textContent = `${depts[0].departName}部署勤怠情報`;
+    selectedDepartmentName.textContent = `${depts[0].departName}勤怠情報`;
     fetchKintaiData();
   }
 }
@@ -57,7 +57,7 @@ async function loadDepartments() {
 // 4) 検索フォーム制御
 departmentSelect.addEventListener("change", () => {
   selectedDepartmentName.textContent =
-    departmentSelect.selectedOptions[0].textContent + "部署勤怠情報";
+    departmentSelect.selectedOptions[0].textContent + "勤怠情報";
 });
 document.getElementById("searchForm").addEventListener("submit", e => {
   e.preventDefault();
@@ -140,9 +140,79 @@ function renderTableWithCheckboxes(list, lastDay) {
   });
 }
 
-// 8) CSV出力（既存のコードそのまま）
+// 8) CSV出力（1人だけチェックされた場合のみ）
 exportBtn.addEventListener("click", () => {
-  /* (省略) */
+  const selectedIds = Array.from(
+    document.querySelectorAll(".chk-user:checked")
+  ).map(cb => cb.dataset.userid);
+
+  if (selectedIds.length === 0) {
+    alert("CSV出力する社員を選択してください");
+    return;
+  }
+
+  if (selectedIds.length > 1) {
+    alert("CSV出力は1人ずつのみ可能です。1人だけ選択してください。");
+    return;
+  }
+
+  const filtered = currentList.filter(rec => selectedIds.includes(rec.userId));
+
+  if (filtered.length === 0) {
+    alert("選択ユーザーに勤怠データがありません");
+    return;
+  }
+
+  let csv = [
+    "社員コード",
+    "年月",
+    "始業時刻(時)",
+    "始業時刻(分)",
+    "就業時刻(時)",
+    "終業時刻(分)",
+    "労働時間",
+    "休憩時間",
+    "超過時間"
+  ].join(",") + "\n";
+
+  filtered.forEach(rec => {
+    const emp    = rec.userId;
+    const ym     = `${rec.year}-${String(rec.month).padStart(2,"0")}`;
+    const inH    = rec.inTimeH  || "0";
+    const inM    = rec.inTimeM  || "0";
+    const outH   = rec.outTimeH || "0";
+    const outM   = rec.outTimeM || "0";
+    const startMin = parseInt(inH)*60 + parseInt(inM);
+    const endMin   = parseInt(outH)*60 + parseInt(outM);
+    let totalMin   = Math.max(endMin - startMin, 0);
+    const breakMin = totalMin > 0 ? 60 : 0;
+    const workMin  = Math.max(totalMin - breakMin, 0);
+    const overtime = Math.max(Math.floor(workMin/60) - 8, 0);
+    const workH    = Math.floor(workMin/60);
+    const breakH   = Math.floor(breakMin/60);
+
+    csv += [
+      emp,
+      ym,
+      inH,
+      inM,
+      outH,
+      outM,
+      workH,
+      breakH,
+      overtime
+    ].join(",") + "\n";
+  });
+
+  const bom  = "\uFEFF";
+  const blob = new Blob([bom + csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+
+  const userName = userMap[selectedIds[0]] || selectedIds[0];
+  const filename = `attendance_${userName}_${yearSelect.value}_${monthSelect.value}.csv`;
+  link.download = filename;
+  link.click();
 });
 
 // 9) 初期ロード
