@@ -6,26 +6,13 @@
   <link rel="stylesheet" href="confirmShinki.css">
 </head>
 <body>
-	<!-- ログイン & 管理者権限チェック -->
-	 <script>
-	   const loginUserName  = sessionStorage.getItem("loginUserName");
-	   const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
-	   if (!loginUserName) {
-	     alert("ログインしてください");
-	     window.location.href = "login.html";
-	   } else if (loginUserAdmin !== "1") {
-	     alert("管理者のみ閲覧可能です。");
-	     window.location.href = "main.html";
-	   }
-	 </script>
-	 
   <div class="notice">内容をご確認ください。</div>
 
-  <h3>登録情報</h3>
+  <h3>解答情報</h3>
   <table id="confirmTable">
     <thead>
       <tr>
-        <th></th>
+        <th>#</th>
         <th>ID</th>
         <th>氏名</th>
         <th>パスワード</th>
@@ -41,9 +28,7 @@
   </table>
 
   <div class="btn-group">
-	<form action="shinki.html" method="get">
-	  <button type="submit" class="btn btn-return">戻る</button>
-	</form>
+    <a href="shinki.html" class="btn btn-return">戻る</a>
     <form id="submit-form" method="POST">
       <!-- 🔽 ここでDBにデータを送信（バックエンドで処理） -->
       <!-- JavaScriptでform内容生成して送信 -->

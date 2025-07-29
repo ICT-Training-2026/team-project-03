@@ -20,13 +20,9 @@
     }
   </script>
 
-  <header class="header">
-	<div class="header-title">HAITO</div>
-    <h1>各部署勤怠情報</h1>
-    <a href="main.html" class="btn-top">メインに戻る</a>
-  </header>
- 
-  <p class="ex">確認したい部署と年月を選択してください。</p>
+  <h1>各部署勤怠情報</h1>
+  <h2 id="selectedDepartmentName"></h2>
+
   <div class="search-bar">
     <form id="searchForm">
       <label for="departmentSelect">部署選択：</label>
@@ -37,7 +33,7 @@
       <button type="submit">検索</button>
     </form>
   </div>
-  <h2 id="selectedDepartmentName"></h2>
+
   <div class="table-container">
     <table id="attendanceTable">
       <thead></thead>
@@ -52,6 +48,7 @@
 
   <div class="buttons">
     <button id="exportCSV">CSVファイルを出力</button>
+    <a href="main.html"><button>TOPに戻る</button></a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
