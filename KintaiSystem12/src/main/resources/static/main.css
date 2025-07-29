@@ -59,16 +59,14 @@ h2 {
   margin: 0%;
 }
 .form-box {
-  display: flex; /* 子要素をフレックスボックスとして配置 */
-  flex-wrap: wrap; /* 画面幅が足りない場合に折り返す */
-  justify-content: space-around; /* 要素間に均等なスペースを配置 */
-  gap: 15px; /* 要素間の隙間を設定 */
-  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   margin-bottom: 20px;
 }
+
 
 .form-box > div {
   flex-basis: calc(50% - 15px); /* 各項目を約50%の幅にして2列に配置 */
@@ -224,6 +222,16 @@ h2 {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+.right-column {
+  width: 400px;
+}
+
+.left-column,
+.center-column {
+  width: calc((100% - 200px) / 2);
+}
+
 
 /* 既存のスタイルを保持または調整 */
 body {
