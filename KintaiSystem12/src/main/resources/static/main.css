@@ -18,6 +18,15 @@ header {
 	box-sizing: border-box;
 }
 
+header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
 .logo {
 	width: 150px;
 	height: 100%;
@@ -30,7 +39,6 @@ header {
 	align-items: center;
 	justify-content: center;
 }
-
 
 header nav a {
   text-decoration: underline;
