@@ -67,6 +67,56 @@ h2 {
   margin-bottom: 20px;
 }
 
+.display-form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.display-form-box > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.display-form-box label {
+  min-width: 80px;
+  text-align: right;
+  font-weight: bold;
+  color: #555;
+}
+
+.display-form-box input[type="number"],
+.display-form-box select {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.display-form-box span {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.display-form-box {
+  width: 70%;
+  margin-left: 0;   
+  padding: 10px 15px;
+  background-color: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.display-title {
+  text-align: left;
+  margin-left: 105px; /* ←你可以调成 50, 70, 80 试出最佳位置 */
+}
 
 .form-box > div {
   flex-basis: calc(50% - 15px); /* 各項目を約50%の幅にして2列に配置 */
@@ -101,6 +151,7 @@ h2 {
   font-size: 12px;
   color: #555;
 }
+
 .submit-btn {
   background-color: #4CAF50;
   color: white;
@@ -110,7 +161,7 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 15px;
-}
+ }
 
 .submit-btn:hover {
   background-color: #45a049;
@@ -124,19 +175,10 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 15px;
-  margin-right: 10px; /* 登録ボタンとの間隔 */
 }
 
 .search-btn:hover {
   background-color: #bfbfbf;
-}
-
-/* ボタン間隔の調整 */
-.button-group {
-  display: flex;
-  justify-content: center; /* ボタンを中央寄せ */
-  gap: 5px; /* ボタン間のスペースを減らす */
-  margin-top: 20px; /* 上部との余白 */
 }
 
 .right-column a {
@@ -169,24 +211,6 @@ h2 {
 	text-align: center;
 	margin: 0%;
 }
-
-/* center-column内のフォームを横並びにするためのコンテナ */
-/* #forms-container { */
-/*   display: flex; */
-/*   justify-content: space-around; */
-/*   gap: 20px; */
-/*   flex-wrap: wrap; */
-/*   margin-top: 20px; */
-/* } */
-
-/* #forms-container > div { */
-/*   flex: 1; */
-/*   min-width: 350px; */
-/*   background-color: #fff; */
-/*   padding: 20px; */
-/*   border-radius: 8px; */
-/*   box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
-/* } */
 
 /* コピーボタンのスタイル調整 */
 #copyToRegisterBtn {
@@ -224,7 +248,7 @@ h2 {
 }
 
 .right-column {
-  width: 400px;
+  width: 410px;
   margin-top: 60px;
 }
 
@@ -262,3 +286,6 @@ body {
   background-color: #4CAF50;
   border-color: #4CAF50;
 }
+
+
+

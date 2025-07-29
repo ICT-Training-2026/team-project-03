@@ -22,10 +22,17 @@
 
   <div class="container">
     <div class="left-column">
+		<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+		  <div style="font-size:14px;">
+		    <span>日付を選択した後</span><br>
+		    <span>検索ボタンを押してください</span>
+		  </div>
+		  <button type="button" id="searchKintaiBtn" class="search-btn">検索</button>
+		</div>
       <div id="calendar"></div>
-      <h2>勤怠情報 検索結果</h2>
+      <h2 class="display-title">検索結果</h2>
       <form id="kintaiDisplayForm">
-        <div class="form-box">
+        <div class="display-form-box">
           <div>
             <label>年月日</label>
             <span id="displaySelectedDate">----</span>
@@ -54,8 +61,7 @@
           </div>
         </div>
         <div class="button-group">
-          <button type="button" id="searchKintaiBtn" class="search-btn">検索</button>
-          <button type="button" id="copyToRegisterBtn" class="submit-btn">この内容を編集・登録する</button>
+          <button type="button" id="copyToRegisterBtn" class="submit-btn">この内容を編集する</button>
         </div>
       </form>
     </div>
