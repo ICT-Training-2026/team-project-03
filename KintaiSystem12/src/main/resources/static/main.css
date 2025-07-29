@@ -212,7 +212,7 @@ h2 {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
 }
 
 .center-column {
@@ -220,11 +220,12 @@ h2 {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgb(255, 255, 255);
 }
 
 .right-column {
   width: 400px;
+  margin-top: 60px;
 }
 
 .left-column,
