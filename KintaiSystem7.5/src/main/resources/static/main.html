@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>M社 勤怠登録</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">HAITO</div>
+    <h1>M社　勤怠登録</h1>
+    <nav>
+      <a href="login.html">ログアウト</a>
+    </nav>
+  </header>
+
+  <!-- ログイン中ユーザー表示 -->
+  <div id="login-user-info" style="text-align:right; margin:10px; font-weight:bold; color:#333;"></div>
+
+  <div class="container">
+    <div class="left-column">
+      <div id="calendar"></div>
+    </div>
+
+    <div class="center-column">
+      <div id="currentDateTime" class="datetime"></div>
+      <h2>勤怠を登録してください</h2>
+      <form id="kintaiForm" action="confirmKintai.html" method="GET">
+        <div class="form-box">
+          <div>
+            <label>年月日</label>
+            <span id="selectedDate">----</span>
+            <input type="hidden" id="dateInput" name="date">
+          </div>
+          <div>
+            <label>出勤区分</label>
+            <select name="status" id="status">
+              <option>出勤</option>
+              <option>欠勤</option>
+              <option>振出</option>
+              <option>振休</option>
+              <option>年休</option>
+              <option>休日</option>
+            </select>
+          </div>
+          <div>
+            <label>出勤時間</label>
+            <input type="number" name="startHour" id="startHour" min="0" max="23" required> ：
+            <input type="number" name="startMin"  id="startMin"  min="0" max="59" required>
+          </div>
+          <div>
+            <label>退勤時間</label>
+            <input type="number" name="endHour"   id="endHour"   min="0" max="23" required> ：
+            <input type="number" name="endMin"    id="endMin"    min="0" max="59" required>
+          </div>
+        </div>
+
+        <p class="note">
+          ※全ての項目を入力してください<br>
+          ※半角数字で入力してください<br>
+          ※24時間表示で入力してください
+        </p>
+
+        <button type="submit" class="submit-btn">登録</button>
+      </form>
+    </div>
+
+    <div class="right-column">
+      <a href="department.html" id="link-dept">部署勤怠情報</a><br>
+      <a href="shinki.html"      id="link-new">ユーザー登録</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  <script>
+    // ──────── ログイン情報チェック ────────
+    const loginUserName  = sessionStorage.getItem("loginUserName");
+    const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
+    const isAdmin        = loginUserAdmin === "1";
+
+    // 未ログインならログイン画面へ
+    if (!loginUserName) {
+      alert("ログインしてください");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("login-user-info")
+              .textContent = `${loginUserName} さんがログイン中です`;
+    }
+
+    // ──────── 管理者権限制御 ────────
+    document.getElementById("link-new").addEventListener("click", function(e) {
+      if (!isAdmin) {
+        e.preventDefault();
+        alert("管理者のみ新規ユーザー登録が可能です。");
+      }
+    });
+    document.getElementById("link-dept").addEventListener("click", function(e) {
+      if (!isAdmin) {
+        e.preventDefault();
+        alert("管理者のみ部署別勤怠情報の閲覧が可能です。");
+      }
+    });
+
+    // ──────── 時計表示 ────────
+    function updateClock() {
+      const now = new Date();
+      const y   = now.getFullYear();
+      const m   = String(now.getMonth() + 1).padStart(2, '0');
+      const d   = String(now.getDate()).padStart(2, '0');
+      const h   = String(now.getHours()).padStart(2, '0');
+      const min = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById("currentDateTime")
+              .textContent = `${y}/${m}/${d} ${h}:${min}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ──────── カレンダー ────────
+    flatpickr("#calendar", {
+      locale:      "ja",
+      inline:      true,
+      defaultDate: new Date(),
+      onChange: (selectedDates, dateStr) => {
+        document.getElementById("selectedDate").textContent = dateStr;
+        document.getElementById("dateInput").value        = dateStr;
+      }
+    });
+
+    // ──────── 勤怠フォーム送信 ────────
+    document.getElementById("kintaiForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const date  = encodeURIComponent(document.getElementById("dateInput").value);
+      const status= encodeURIComponent(document.getElementById("status").value);
+      const start = `${document.getElementById("startHour").value}:${document.getElementById("startMin").value}`;
+      const end   = `${document.getElementById("endHour").value}:${document.getElementById("endMin").value}`;
+      window.location.href = `confirmKintai.html?date=${date}&status=${status}&startTime=${start}&endTime=${end}`;
+    });
+  </script>
+  <script src="register.js"></script>
+</body>
+</html>
