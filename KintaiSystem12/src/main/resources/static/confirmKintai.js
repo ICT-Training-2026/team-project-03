@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error(`サーバーエラー(${res.status})`);
       window.location.href = "complete.html";
     } catch (err) {
-      alert("登録に失敗しました: " + err.message);
+      alert("登録に失敗しました。\n前の画面に戻ってカレンダーから日付を選択してください。\n" + err.message);
     }
   });
 });
