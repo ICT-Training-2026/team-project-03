@@ -63,8 +63,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // フォーム送信: 確認画面へ遷移
-  document.getElementById("shinkiForm").addEventListener("submit", function (e) {
+  document.getElementById("shinkiForm").addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    // 既存ユーザーID一覧を取得
+    const existing = await fetch("/api/user/all")
+                            .then(res => res.json())
+                            .then(list => list.map(u => u.userId));
+
+    // 入力行ごとに重複チェック
+    for (let tr of tbody.children) {
+      const newId = tr.querySelector('[name="userId"]').value.trim();
+      if (existing.includes(newId)) {
+        alert(`ユーザーID「${newId}」は既に存在しています。別のIDを入力してください。`);
+        return; // 処理中断
+      }
+    }
+
     // 各行からパラメータを組み立て
     const params = new URLSearchParams();
     Array.from(tbody.children).forEach((tr, index) => {
