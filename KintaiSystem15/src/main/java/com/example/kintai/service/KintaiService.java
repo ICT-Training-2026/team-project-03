@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 // データベース操作を行うリポジトリクラス
 import com.example.kintai.entity.Kintai;
 import com.example.kintai.repository.KintaiRepository;
-import com.example.kintai.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +26,6 @@ import lombok.RequiredArgsConstructor;
 public class KintaiService {
 
     private final KintaiRepository kintaiRepository;
-    private final UserRepository userRepository;
 
     // --- 勤怠区分IDの内部マッピング（Axxx形式から1桁数字へ変換）---
     private static final Map<String, String> ATT_ID_TO_SINGLE_DIGIT_MAP = new HashMap<>();
