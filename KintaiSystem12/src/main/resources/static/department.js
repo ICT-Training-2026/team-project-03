@@ -34,7 +34,7 @@ async function loadDepartments() {
   // 初期表示
   if (depts.length) {
     departmentSelect.value = depts[0].departId;
-    selectedDepartmentName.textContent = `${depts[0].departName}勤怠情報`;
+    selectedDepartmentName.textContent = `${depts[0].departName}部署勤怠情報`;
     fetchKintaiData();
   }
 }
@@ -57,7 +57,7 @@ async function loadDepartments() {
 // 4) 検索フォーム制御
 departmentSelect.addEventListener("change", () => {
   selectedDepartmentName.textContent =
-    departmentSelect.selectedOptions[0].textContent + "勤怠情報";
+    departmentSelect.selectedOptions[0].textContent + "部署勤怠情報";
 });
 document.getElementById("searchForm").addEventListener("submit", e => {
   e.preventDefault();
