@@ -17,6 +17,7 @@ header {
 	z-index: 1000;
 	box-sizing: border-box;
 }
+
 .logo {
 	width: 150px;
 	height: 100%;
@@ -225,38 +226,50 @@ h2 {
 #kintaiDisplayForm {
   transform: scale(0.8); /* サイズを0.8倍に縮小 */
   transform-origin: top center; /* 縮小の中心を上中央に設定 */
-  width: 125%; /* 0.8倍に縮小したときに元の幅を維持するように調整 (1 / 0.8 = 1.25) */
+  width: 140%; /* 0.8倍に縮小したときに元の幅を維持するように調整 (1 / 0.8 = 1.25) */
   max-width: none; /* 既存のmax-widthがあれば解除 */
   margin-left: -12.5%; /* 縮小による中央寄せのずれを補正 */
   margin-right: -12.5%; /* 縮小による中央寄せのずれを補正 */
 }
 
-/* left-columnとcenter-columnの幅の調整 */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  margin-top: 43px;
+  gap: 20px; /* 三栏之间留出间距 */
+}
+
+/* 左カラム */
 .left-column {
-  flex: 0 0 400px; /* 左カラムの幅を固定または拡大 */
+  width: 300px;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgb(255, 255, 255);
+  
+  flex-shrink: 0; /* 保证不会被压缩 */
 }
 
+/* 中央カラム */
 .center-column {
-  flex-grow: 1; /* 中央カラムは残りのスペースを全て占める */
+  flex: 1; /* 自适应占据剩余空间 */
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgb(255, 255, 255);
+  
 }
 
+/* 右カラム */
 .right-column {
-  width: 410px;
-  margin-top: 60px;
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+ 
+  flex-shrink: 0;
 }
 
-.left-column,
-.center-column {
-  width: calc((100% - 200px) / 2);
-}
 
 
 /* 既存のスタイルを保持または調整 */
