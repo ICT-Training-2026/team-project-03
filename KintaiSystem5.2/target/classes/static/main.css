@@ -1,0 +1,80 @@
+body {
+  font-family: 'Yu Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #f7d8ea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+.logo {
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+  background-color: #b34791;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+header nav a {
+  text-decoration: none;
+  color: #333;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+.left-column,
+.right-column {
+  width: 20%;
+}
+.center-column {
+  width: 50%;
+  text-align: center;
+}
+.datetime {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+h2 {
+  text-align: center;
+}
+.form-box {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 20px;
+  width: 60%;  /* 更窄的宽度 */
+  margin: 0 auto;
+  text-align: center; /* 居中文字 */
+}
+.form-box div {
+  margin-bottom: 15px;
+}
+.note {
+  font-size: 12px;
+  color: #555;
+}
+.submit-btn {
+  background-color: #cce0cc;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.right-column a {
+  display: block;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  margin-bottom: 10px;
+}

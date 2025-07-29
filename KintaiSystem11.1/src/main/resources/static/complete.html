@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>登録完了</title>
+  <link rel="stylesheet" href="complete.css">
+</head>
+<body>
+	<!-- ログインチェック -->
+	<script>
+	  const loginUserName = sessionStorage.getItem("loginUserName");
+	  if (!loginUserName) {
+	    alert("ログインしてください");
+	    window.location.href = "login.html";
+	  }
+	</script>
+  <h1>登録完了画面</h1>
+
+  <div class="message-box">
+    <p><strong>登録が完了しました</strong></p>
+  </div>
+
+  <div class="btn-wrap">
+    <a href="main.html" class="btn">TOPに戻る</a>
+  </div>
+
+  <script src="complete.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+/* department.css */
+body {
+  font-family: "Yu Gothic", sans-serif;
+  padding: 20px;
+}
+h1, h2 {
+  text-align: center;
+  margin: 0.5em 0;
+}
+.search-bar {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.search-bar select,
+.search-bar button {
+  margin: 0 0.5em;
+  padding: 0.5em;
+  font-size: 1rem;
+}
+.table-container {
+  overflow: auto;
+  max-width: 100%;
+  border: 1px solid #ccc;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: max-content;
+}
+thead th, tbody td {
+  border: 1px solid #000;
+  text-align: center;
+  padding: 5px;
+  min-width: 30px;
+}
+/* 二段ヘッダーを固定 */
+thead th {
+  position: sticky;
+  top: 0;
+  background: #f3f3f3;
+  z-index: 2;
+}
+/* 先頭列（社員名）を固定 */
+tbody td:first-child,
+thead th:first-child {
+  position: sticky;
+  left: 0;
+  background: #e9f0ff;
+  z-index: 1;
+}
+/* ▼ ここから追加 ▼ */
+/* 出勤セル（緑） */
+td.green-cell {
+  background-color: #b6eab6;
+}
+/* 欠勤・休日セル（赤） */
+td.red-cell {
+  background-color: #f8b3b3;
+}
+/* ▲ ここまで追加 ▲ */
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 1em 0;
+}
+.legend span {
+  padding: 0.5em 1em;
+  font-weight: bold;
+  border-radius: 0.3em;
+}
+.legend .green { background: #b6eab6; }
+.legend .red   { background: #f8b3b3; }
+
+.buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+.buttons button {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  cursor: pointer;
+}
