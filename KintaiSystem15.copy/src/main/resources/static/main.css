@@ -178,6 +178,9 @@ h2 {
 	text-align: center;
 	margin: 0%;
 }
+#link-dept,#link-new{
+	background-color:  #FFF2CC;
+}
 
 /* center-column内のフォームを横並びにするためのコンテナ */
 /* #forms-container { */
