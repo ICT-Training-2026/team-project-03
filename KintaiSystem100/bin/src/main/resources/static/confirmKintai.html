@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>勤怠確認</title>
+  <link rel="stylesheet" href="confirmKintai.css">
+</head>
+<body>
+  <!-- ログインチェック -->
+  <script>
+    const loginUserName = sessionStorage.getItem("loginUserName");
+    if (!loginUserName) {
+      alert("ログインしてください");
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <div class="notice">内容をご確認ください。</div>
+
+  <h3>勤怠情報</h3>
+  <table class="confirm-table">
+    <tbody>
+      <tr><td>日付</td><td id="confirm-date"></td></tr>
+      <tr><td>勤怠区分</td><td id="confirm-status"></td></tr>
+      <tr><td>出勤</td><td id="confirm-start"></td></tr>
+      <tr><td>退勤</td><td id="confirm-end"></td></tr>
+      <tr><td>休憩時間</td><td id="confirm-break"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="btn-group">
+    <form action="main.html" method="get">
+      <button type="submit" class="btn btn-return">戻る</button>
+    </form>
+    <form id="submit-form" method="POST">
+      <button type="submit" class="btn btn-submit">登録</button>
+    </form>
+  </div>
+
+  <script src="confirmKintai.js"></script>
+</body>
+</html>

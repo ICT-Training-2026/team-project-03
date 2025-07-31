@@ -1,0 +1,144 @@
+/* login/shinki/department 共通ヘッダー */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(to right, #C9439C 150px, #FDE2F0 150px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.header-title {
+  width: 150px;
+  height: 100%;
+  background-color: #C9439C;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+}
+
+.btn-top {
+  padding: 0.5rem 1rem;
+  background: #29b6f6;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.btn-top:hover {
+  background: #039be5;
+}
+
+
+body {
+  font-family: "Yu Gothic", sans-serif;
+  padding: 120px 20px 20px; /* header 高度 + 间距 */
+}
+h1 {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+h2{
+	text-align: left;
+	padding-left: 50px;
+	margin: 0%;
+}
+.ex{
+	text-align: center;
+}
+.search-bar {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.search-bar select,
+.search-bar button {
+  margin: 0 0.5em;
+  padding: 0.5em;
+  font-size: 1rem;
+}
+.table-container {
+  overflow: auto;
+  max-width: 100%;
+  border: 1px solid #ccc;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: max-content;
+}
+thead th, tbody td {
+  border: 1px solid #000;
+  text-align: center;
+  padding: 5px;
+  min-width: 30px;
+}
+/* 二段ヘッダーを固定 */
+thead th {
+  position: sticky;
+  top: 0;
+  background: #f3f3f3;
+  z-index: 2;
+}
+/* 先頭列（社員名）を固定 */
+tbody td:first-child,
+thead th:first-child {
+  position: sticky;
+  left: 0;
+  background: #e9f0ff;
+  z-index: 1;
+}
+/* ▼ ここから追加 ▼ */
+/* 出勤セル（緑） */
+td.green-cell {
+  background-color: #b6eab6;
+}
+/* 欠勤・休日セル（赤） */
+td.red-cell {
+  background-color: #f8b3b3;
+}
+/* ▲ ここまで追加 ▲ */
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 1em 0;
+}
+.legend span {
+  padding: 0.5em 1em;
+  font-weight: bold;
+  border-radius: 0.3em;
+}
+.legend .green { background: #b6eab6; }
+.legend .red   { background: #f8b3b3; }
+
+.buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+.buttons button {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  cursor: pointer;
+}
