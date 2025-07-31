@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新規ユーザー登録</title>
+  <!-- flatpickr の CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="shinki.css">
+</head>
+<body>
+  <!-- ログイン & 管理者権限チェック -->
+  <script>
+    const loginUserName  = sessionStorage.getItem("loginUserName");
+    const loginUserAdmin = sessionStorage.getItem("loginUserAdmin");
+    if (!loginUserName) {
+      alert("ログインしてください");
+      window.location.href = "login.html";
+    } else if (loginUserAdmin !== "1") {
+      alert("管理者のみ閲覧可能です。");
+      window.location.href = "main.html";
+    }
+  </script>
+
+  <header class="header">
+    <h1>新規ユーザー登録</h1>
+    <a href="main.html" class="btn-top">メインに戻る</a>
+  </header>
+
+  <main class="main">
+    <form id="shinkiForm">
+      <table class="register-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>氏名</th>
+            <th>パスワード</th>
+            <th>メールアドレス</th>
+            <th>部署</th>
+            <th>入社年月日</th>
+            <th>管理者</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <tr>
+            <td class="row-index">1</td>
+            <td><input type="text" name="userId" required></td>
+            <td><input type="text" name="userName" required></td>
+            <td><input type="password" name="pass" required></td>
+            <td><input type="email" name="mail" required></td>
+            <!-- 部署プルダウンに変更 -->
+            <td>
+              <select name="departId" required>
+                <option value="">部署を選択</option>
+              </select>
+            </td>
+            <td><input type="text" class="flatpickr" name="hireDate" placeholder="yyyy-mm-dd" required></td>
+            <td class="center"><input type="checkbox" name="admin"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="controls">
+        <button type="button" id="removeRow" class="control-btn">－</button>
+        <button type="button" id="addRow"    class="control-btn">＋</button>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="submit-btn">登録</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- flatpickr とローカライズ -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+  <!-- 独自スクリプト -->
+  <script src="shinki.js"></script>
+</body>
+</html>

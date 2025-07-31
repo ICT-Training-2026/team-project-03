@@ -1,0 +1,55 @@
+body {
+  font-family: "Yu Gothic", sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.notice {
+  background-color: #e0f4dd;
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid #a3d1a3;
+  width: 80%;
+  margin: 0 auto 20px auto;
+  border-radius: 5px;
+  text-align: left;
+}
+
+h3 {
+  text-align: left;
+  margin-left: 10%;
+}
+
+table {
+  margin: 0 auto 30px auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 6px 10px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.btn-return {
+  background-color: #f3cccc;
+}
+
+.btn-submit {
+  background-color: #cce0f9;
+}
